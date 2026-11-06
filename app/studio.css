@@ -1,0 +1,343 @@
+@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('/fonts/space-grotesk-variable.ttf') format('truetype');font-weight:300 700;font-style:normal;font-display:swap}
+
+:root{
+  --font-body:Manrope,Arial,sans-serif;
+  --font-display:'Space Grotesk',Manrope,sans-serif;
+  --ui-bg:#f5f7fb;--ui-surface:#fff;--ui-raised:#eef2f8;--ui-ink:#18283b;
+  --ui-muted:#657286;--ui-line:#dfe5ee;--ui-blue:#2558f5;--ui-blue-soft:#eaf0ff;--ui-blue-solid:#2558f5;
+  --ui-green:#187353;--ui-green-soft:#e6f4ec;--ui-red:#b63d3a;--ui-shadow:0 6px 26px #18283b05;
+}
+html[data-theme='dark']{
+  --ui-bg:#101821;--ui-surface:#19232f;--ui-raised:#202d3c;--ui-ink:#edf3fc;
+  --ui-muted:#a3b1c4;--ui-line:#304052;--ui-blue:#a0baff;--ui-blue-soft:#263b62;
+  --ui-green:#9ddfc0;--ui-green-soft:#203f36;--ui-red:#ffaaa4;--ui-shadow:none;
+}
+html .guirab-studio{font-family:var(--font-body);background:var(--ui-bg);color:var(--ui-ink);font-size:14px;line-height:1.5;font-kerning:normal}
+.guirab-studio :is(button,input,select,textarea){font-family:var(--font-body)}
+.guirab-studio :is(button,a,input,select,textarea,summary):focus-visible{outline:3px solid var(--ui-blue);outline-offset:3px}
+.guirab-studio :is(button,a){touch-action:manipulation}
+.skip-link{position:fixed;left:16px;top:-80px;z-index:1000;background:var(--ui-blue);color:var(--ui-surface);padding:12px 20px;border-radius:8px;font-weight:700}
+.skip-link:focus{top:16px}
+
+/* A quiet control room, with the physical plate code as its signature. */
+html .guirab-studio .app-shell{display:flex;min-height:100dvh;background:var(--ui-bg)}
+html .guirab-studio .app-shell .sidebar{position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;height:100dvh;width:224px;padding:32px 20px 24px;background:var(--ui-surface);border-right:1px solid var(--ui-line)}
+html .guirab-studio .app-shell .brand{font-family:var(--font-display);font-size:30px;font-weight:700;letter-spacing:-1.3px;color:var(--ui-ink);gap:12px;padding:0 10px 40px}
+html .guirab-studio .app-shell .brand small{font-family:var(--font-body);font-size:9px;letter-spacing:3.2px;color:var(--ui-muted);font-weight:700;margin-top:2px}
+.guirab-studio .color-mark{transform:none;width:26px;height:26px;gap:3px}
+.guirab-studio .color-mark span{border-radius:4px}
+html .guirab-studio .app-shell .nav-label{font-size:10px;letter-spacing:1.8px;color:var(--ui-muted);margin:0 12px 12px}
+html .guirab-studio .app-shell .sidebar nav{display:grid;gap:6px}
+html .guirab-studio .app-shell .nav-item{min-height:48px;padding:12px;gap:12px;font-size:13px;font-weight:650;border-radius:10px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .nav-item:hover{background:var(--ui-raised);color:var(--ui-ink)}
+html .guirab-studio .app-shell .nav-item.current{color:var(--ui-blue);background:var(--ui-blue-soft);box-shadow:inset 3px 0 var(--ui-blue)}
+html .guirab-studio .app-shell .nav-count{font-family:var(--font-display);color:inherit;background:var(--ui-surface);border:1px solid var(--ui-line);font-size:11px;padding:2px 7px;border-radius:6px}
+html .guirab-studio .app-shell .sidebar-note{background:var(--ui-blue-soft);color:var(--ui-muted);border:0;border-radius:14px;padding:18px;margin-bottom:24px;position:relative}
+html .guirab-studio .app-shell .sidebar-note>svg{color:var(--ui-blue);width:24px;margin-bottom:10px}
+html .guirab-studio .app-shell .sidebar-note strong{font-family:var(--font-display);font-size:15px;line-height:1.45;color:var(--ui-ink);font-weight:600}
+html .guirab-studio .app-shell .sidebar-note p{font-size:11px;line-height:1.7;color:var(--ui-muted);margin:9px 0 16px}
+html .guirab-studio .app-shell .account{padding:18px 4px 0;gap:10px;border-color:var(--ui-line)}
+html .guirab-studio .app-shell .avatar{width:36px;height:36px;border-radius:11px;background:var(--ui-raised);color:var(--ui-ink);font-family:var(--font-display)}
+html .guirab-studio .app-shell .account strong{font-size:12px;color:var(--ui-ink)}
+html .guirab-studio .app-shell .account small{font-size:10px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .main-shell{margin-left:224px;width:calc(100% - 224px);min-width:0}
+html .guirab-studio .app-shell .topbar{height:72px;padding:0 36px;background:var(--ui-bg);border-color:var(--ui-line);font-size:12px}
+html .guirab-studio .app-shell .topbar strong{color:var(--ui-ink);font-weight:650}
+html .guirab-studio .app-shell .breadcrumb{color:var(--ui-muted)}
+html .guirab-studio .app-shell .breadcrumb-slash{color:var(--ui-muted);opacity:.5;margin:0 12px}
+html .guirab-studio .app-shell .topbar-actions{gap:12px;display:flex;align-items:center}
+html .guirab-studio .app-shell :is(.theme-toggle,.logout-button){min-width:40px;min-height:40px;border-radius:10px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-muted)}
+html .guirab-studio .app-shell .theme-toggle{font-size:11px;padding:8px 11px}
+html .guirab-studio .app-shell .private-badge{font-size:10px;letter-spacing:.1px;background:transparent;border:0;color:var(--ui-muted);padding:4px;gap:6px}
+html .guirab-studio .app-shell main{max-width:1580px;padding:32px 36px 24px;min-width:0}
+html .guirab-studio .app-shell .page-heading{margin:0 0 30px;align-items:center;gap:24px}
+html .guirab-studio .app-shell .eyebrow{font-size:10px;letter-spacing:1.7px;font-weight:750;color:var(--ui-blue);margin-bottom:10px}
+html .guirab-studio .app-shell .page-heading h1{font-family:var(--font-display);font-size:36px;font-weight:600;letter-spacing:-1.35px;line-height:1.15;color:var(--ui-ink)}
+html .guirab-studio .app-shell .page-heading p{font-size:13px;line-height:1.7;color:var(--ui-muted);margin-top:12px;max-width:650px}
+html .guirab-studio .app-shell .button{min-height:44px;padding:11px 16px;gap:8px;border-radius:10px;font-size:12px;font-weight:700;line-height:1.5}
+html .guirab-studio .app-shell .button.primary{background:#2558f5;color:#fff;box-shadow:0 3px 0 #163ab7;border-color:transparent}
+html .guirab-studio .app-shell .button.primary:hover:not(:disabled){background:#1946d8;box-shadow:0 3px 0 #102c92}
+html .guirab-studio .app-shell .button.secondary{background:var(--ui-surface);border-color:var(--ui-line);color:var(--ui-ink);box-shadow:none}
+html .guirab-studio .app-shell .button.secondary:hover:not(:disabled){background:var(--ui-raised);border-color:var(--ui-muted)}
+html .guirab-studio .app-shell .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--ui-line);border-radius:16px;background:var(--ui-surface);margin-bottom:26px;overflow:hidden;box-shadow:var(--ui-shadow)}
+html .guirab-studio .app-shell .metric{border:0;border-radius:0;box-shadow:none;padding:22px 26px;gap:14px;min-width:0;background:transparent;position:relative;align-items:center}
+html .guirab-studio .app-shell .metric+.metric{border-left:1px solid var(--ui-line)}
+html .guirab-studio .app-shell .metric-icon{width:40px;height:40px;border-radius:11px}
+html .guirab-studio .app-shell .metric-icon.blue{background:var(--ui-blue-soft);color:var(--ui-blue)}
+html .guirab-studio .app-shell .metric-icon.yellow{background:#fff4d9;color:#956b0d}
+html .guirab-studio .app-shell .metric-icon.green{background:var(--ui-green-soft);color:var(--ui-green)}
+html .guirab-studio .app-shell .metric>div>span{font-size:12px;font-weight:600;color:var(--ui-muted);white-space:normal}
+html .guirab-studio .app-shell .metric strong{font-family:var(--font-display);font-size:31px;font-weight:600;line-height:1.25;color:var(--ui-ink);letter-spacing:-1px;font-variant-numeric:tabular-nums}
+html .guirab-studio .app-shell .metric>small{font-size:10px;padding-left:54px;margin-top:-7px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .workspace-grid{grid-template-columns:minmax(0,1fr) 296px;gap:24px;align-items:start}
+html .guirab-studio .app-shell .panel{border-radius:16px;background:var(--ui-surface);border:1px solid var(--ui-line);box-shadow:var(--ui-shadow);color:var(--ui-ink)}
+html .guirab-studio .app-shell .panel-heading{padding:20px 22px;border-color:var(--ui-line);gap:14px;min-height:84px}
+html .guirab-studio .app-shell .panel-heading h2{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ui-ink);letter-spacing:-.5px}
+html .guirab-studio .app-shell .panel-heading p{font-size:11px;line-height:1.65;color:var(--ui-muted);margin-top:4px}
+html .guirab-studio .app-shell .icon-button{height:40px;width:40px;border-radius:9px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .icon-button:hover:not(:disabled){background:var(--ui-blue-soft);border-color:transparent;color:var(--ui-blue)}
+html .guirab-studio .app-shell .table-toolbar{padding:18px 22px;gap:10px;background:var(--ui-surface);border-color:var(--ui-line)}
+html .guirab-studio .app-shell .search-field{padding:11px 12px;min-height:44px;border-color:var(--ui-line);background:var(--ui-bg);border-radius:9px;gap:9px;color:var(--ui-muted);min-width:0}
+html .guirab-studio .app-shell .search-field input{font-size:12px;color:var(--ui-ink)}
+html .guirab-studio .app-shell :is(input,textarea)::placeholder{color:var(--ui-muted);opacity:1}
+html .guirab-studio .app-shell .filter-field select{font-size:11px;min-height:44px;border-color:var(--ui-line);background:var(--ui-surface);color:var(--ui-ink);border-radius:9px;padding-right:30px}
+html .guirab-studio .app-shell .selection-toolbar{padding:12px 22px;background:var(--ui-bg);border-color:var(--ui-line);color:var(--ui-muted);font-size:11px;gap:10px;flex-wrap:wrap}
+html .guirab-studio .app-shell .selection-toolbar strong{color:var(--ui-ink)}
+html .guirab-studio .app-shell .selection-toolbar small{font-size:10px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .batch-print-button{background:var(--ui-surface)!important;border-color:var(--ui-line)!important;color:var(--ui-blue)!important;min-height:40px;font-size:11px}
+html .guirab-studio .app-shell :is(th,td){border-color:var(--ui-line)}
+html .guirab-studio .app-shell thead{background:var(--ui-surface)}
+html .guirab-studio .app-shell th{font-size:10px;letter-spacing:.35px;font-weight:700;color:var(--ui-muted);padding:13px 12px}
+html .guirab-studio .app-shell td{padding:18px 12px}
+html .guirab-studio .app-shell :is(th,td):first-child{padding-left:20px}
+html .guirab-studio .app-shell .checkbox-cell{width:42px;padding-right:4px}
+html .guirab-studio .app-shell .plate-checkbox{width:16px;height:16px;accent-color:#2558f5;cursor:pointer}
+.table-select-all{display:flex;align-items:center;gap:10px;min-height:32px;cursor:pointer}
+.mobile-select-label{display:none}
+html .guirab-studio .app-shell .selection-toolbar:not(.has-selection)>div{display:none}
+html .guirab-studio .app-shell .vm-intro>div:first-child{display:none}
+html .guirab-studio .app-shell .vm-intro{justify-content:flex-end}
+html .guirab-studio .app-shell .selected-row{background:var(--ui-blue-soft)}
+html .guirab-studio .app-shell .preview-row:not(.selected-row){box-shadow:inset 2px 0 var(--ui-line)}
+html .guirab-studio .app-shell tbody tr:hover{background:var(--ui-blue-soft)}
+html .guirab-studio .app-shell .store-name{gap:12px;min-width:150px;max-width:300px;min-height:44px;color:var(--ui-ink)}
+html .guirab-studio .app-shell .store-avatar{width:38px;height:42px;background:var(--ui-raised);border-color:var(--ui-line);border-radius:11px 11px 6px 6px;font-family:var(--font-display);font-size:13px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .store-name strong{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:600;color:var(--ui-muted);max-width:250px;overflow:visible}
+html .guirab-studio .app-shell .crm-inline-code{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-display);font-variant-numeric:tabular-nums;font-size:16px;letter-spacing:1px;font-weight:600;color:var(--ui-ink);background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:7px;padding:4px 7px;line-height:1.2}
+html .guirab-studio .app-shell .store-name small{font-family:var(--font-body);font-size:11px;line-height:1.5;color:var(--ui-muted);margin-top:6px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html .guirab-studio .app-shell .status-badge{font-size:10px;padding:6px 9px;gap:6px;font-weight:700}
+html .guirab-studio .app-shell .status-badge.available{background:var(--ui-blue-soft);color:var(--ui-blue)}
+html .guirab-studio .app-shell .status-badge.active{background:var(--ui-green-soft);color:var(--ui-green)}
+html .guirab-studio .app-shell .status-badge.paused{background:#fff4d9;color:#956b0d}
+html .guirab-studio .app-shell .scan-cell strong{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ui-ink);font-variant-numeric:tabular-nums}
+html .guirab-studio .app-shell .scan-cell small{font-size:10px;line-height:1.5;white-space:normal;color:var(--ui-muted);max-width:110px}
+html .guirab-studio .app-shell .configure-button{min-height:40px;background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:9px;color:var(--ui-ink);font-size:10px;font-weight:650;padding:9px 10px}
+html .guirab-studio .app-shell .configure-button:hover{background:var(--ui-blue-soft);color:var(--ui-blue)}
+html .guirab-studio .app-shell .row-actions{gap:3px}
+html .guirab-studio .app-shell .table-footer{padding:16px 22px;background:var(--ui-surface);color:var(--ui-muted);font-size:10px;border-color:var(--ui-line)}
+html .guirab-studio .app-shell .preview-panel{position:sticky;top:20px}
+html .guirab-studio .app-shell .preview-panel .panel-heading{align-items:flex-start;flex-direction:column;gap:8px}
+html .guirab-studio .app-shell .size-tag{font-size:10px;font-weight:600;background:var(--ui-raised);color:var(--ui-muted);border-color:var(--ui-line);border-radius:6px;padding:4px 7px;white-space:nowrap}
+html .guirab-studio .app-shell .plaque-stage{background:var(--ui-raised);border:0;padding:26px 36px;min-height:0;position:relative}
+html .guirab-studio .app-shell .plaque-stage img{border-radius:9px 9px 0 0;box-shadow:0 13px 22px #10203024,4px 5px 0 #c8d1df;max-width:100%;width:100%;color-scheme:light}
+html .guirab-studio .app-shell .preview-details{padding:18px 18px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+html .guirab-studio .app-shell .preview-details h3{font-family:var(--font-display);font-size:14px;color:var(--ui-ink);font-weight:600}
+html .guirab-studio .app-shell .preview-store-caption{font-size:11px;line-height:1.7;color:var(--ui-muted);padding:10px 18px 0}
+html .guirab-studio .app-shell .link-field{padding:18px 18px 0}
+html .guirab-studio .app-shell .link-field label{font-size:10px;font-weight:650;color:var(--ui-muted);margin-bottom:7px}
+html .guirab-studio .app-shell .link-field>div{background:var(--ui-bg);border-color:var(--ui-line);border-radius:9px}
+html .guirab-studio .app-shell .link-field input{font-size:10px;color:var(--ui-ink);padding:12px 9px;min-width:0}
+html .guirab-studio .app-shell .link-field button{width:40px;min-height:40px;border-color:var(--ui-line);color:var(--ui-muted)}
+html .guirab-studio .app-shell .preview-configure{padding:14px 18px 0}
+html .guirab-studio .app-shell .preview-buttons{padding:14px 18px 0;gap:8px}
+html .guirab-studio .app-shell .preview-buttons .button{font-size:11px;padding:10px 12px}
+html .guirab-studio .app-shell .fine-print{font-size:10px;line-height:1.6;color:var(--ui-muted);padding:14px 18px 18px}
+html .guirab-studio .app-shell .state-area{padding:48px 24px;min-height:300px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .state-area h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ui-ink)}
+html .guirab-studio .app-shell .state-area p{font-size:13px;line-height:1.8;color:var(--ui-muted);max-width:350px}
+html .guirab-studio .app-shell .empty-preview{background:var(--ui-surface);padding:28px 20px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .empty-preview h3{font-family:var(--font-display);font-size:18px;color:var(--ui-ink)}
+html .guirab-studio .app-shell .empty-preview p{font-size:12px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .page-footer{padding-top:24px;margin-top:28px;font-size:10px;color:var(--ui-muted);border-top:1px solid var(--ui-line)}
+html .guirab-studio .app-shell .page-footer .color-mark{width:14px;height:14px;gap:2px}
+
+/* Print studio: one clear output, with the other formats within reach. */
+html .guirab-studio .app-shell .print-grid{grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+html .guirab-studio .app-shell .print-content{padding:22px}
+html .guirab-studio .app-shell .batch-export-card{padding:22px;border-radius:12px;background:var(--ui-blue-soft);border:1px solid var(--ui-line)}
+html .guirab-studio .app-shell .batch-export-card h3{font-family:var(--font-display);font-size:17px;color:var(--ui-ink);font-weight:600}
+html .guirab-studio .app-shell .batch-export-card p{font-size:12px;color:var(--ui-muted);line-height:1.7}
+html .guirab-studio .app-shell .batch-export-card>small{font-size:11px;line-height:1.7;color:var(--ui-muted)}
+html .guirab-studio .app-shell .batch-export-icon{color:var(--ui-blue);background:var(--ui-surface);border:0;border-radius:11px}
+html .guirab-studio .app-shell .batch-selection-summary{border-color:var(--ui-line);color:var(--ui-muted);font-size:11px;margin:18px 0}
+html .guirab-studio .app-shell .batch-selection-summary strong{font-size:11px;color:var(--ui-ink)}
+html .guirab-studio .app-shell .selected-plate-chips>span{background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:7px;color:var(--ui-ink);font-family:var(--font-display);font-size:11px;min-height:32px}
+html .guirab-studio .app-shell .selected-plate-chips button{width:30px;min-height:30px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .batch-images-download{background:var(--ui-surface)!important;border-color:var(--ui-line)!important;color:var(--ui-ink)!important}
+html .guirab-studio .app-shell .field-label{font-size:12px;font-weight:700;color:var(--ui-ink);margin-bottom:8px}
+html .guirab-studio .app-shell :is(.form-input,.select-wrap select){min-height:46px;border:1px solid var(--ui-line);border-radius:9px;font-size:14px;background:var(--ui-surface);color:var(--ui-ink);padding:11px 13px}
+html .guirab-studio .app-shell .section-divider{font-size:10px;color:var(--ui-muted);letter-spacing:.2px;margin:26px 0 20px}
+html .guirab-studio .app-shell :is(.section-divider::before,.section-divider::after){background:var(--ui-line)}
+html .guirab-studio .app-shell .print-domain-note{border-radius:10px;background:var(--ui-green-soft);border-color:var(--ui-line);color:var(--ui-green);padding:14px;gap:10px;margin:18px 0}
+html .guirab-studio .app-shell .print-domain-note p{font-size:11px;line-height:1.7}
+html .guirab-studio .app-shell .export-list{gap:10px}
+html .guirab-studio .app-shell .export-button{background:var(--ui-surface);border-color:var(--ui-line);color:var(--ui-ink);border-radius:11px;min-height:72px;padding:15px;gap:14px}
+html .guirab-studio .app-shell .export-button:hover:not(:disabled){background:var(--ui-blue-soft);border-color:var(--ui-blue)}
+html .guirab-studio .app-shell .export-button strong{font-size:13px;color:var(--ui-ink);font-weight:700}
+html .guirab-studio .app-shell .export-button small{font-size:11px;color:var(--ui-muted);line-height:1.6;margin-top:5px}
+html .guirab-studio .app-shell .export-icon{background:var(--ui-raised);color:var(--ui-blue);border:0;width:40px;height:40px;border-radius:10px}
+html .guirab-studio .app-shell .print-tip{background:var(--ui-raised);border-color:var(--ui-line);border-radius:12px;color:var(--ui-muted);padding:18px;gap:12px;margin-top:22px}
+html .guirab-studio .app-shell .print-tip strong{color:var(--ui-ink);font-size:12px}
+html .guirab-studio .app-shell .print-tip p{color:var(--ui-muted);font-size:11px;line-height:1.9;margin-top:5px}
+html .guirab-studio .app-shell .print-preview{position:sticky;top:20px}
+html .guirab-studio .app-shell .print-specs{font-size:10px;color:var(--ui-muted);padding:18px;gap:12px;flex-wrap:wrap}
+html .guirab-studio .app-shell .plaque-stage.large{padding:30px 48px}
+html .guirab-studio .app-shell .settings-grid{grid-template-columns:minmax(0,1fr) 370px;gap:24px}
+html .guirab-studio .app-shell .settings-content{padding:24px}
+html .guirab-studio .app-shell .domain-card{padding:20px;background:var(--ui-blue-soft);border-color:var(--ui-line);border-radius:12px}
+html .guirab-studio .app-shell .domain-card strong{font-family:var(--font-display);font-size:18px;color:var(--ui-ink)}
+html .guirab-studio .app-shell .domain-icon{background:var(--ui-surface);color:var(--ui-blue);border:0}
+html .guirab-studio .app-shell .domain-status{font-size:11px;color:var(--ui-muted);gap:6px}
+html .guirab-studio .app-shell .domain-status.connected{color:var(--ui-green)}
+html .guirab-studio .app-shell .settings-description{font-size:13px;line-height:1.8;color:var(--ui-muted);margin:22px 0}
+html .guirab-studio .app-shell .settings-rule{font-size:12px;line-height:1.6;color:var(--ui-muted);padding:16px 0;border-color:var(--ui-line);gap:20px;flex-wrap:wrap}
+html .guirab-studio .app-shell .settings-rule strong{color:var(--ui-ink)}
+html .guirab-studio .app-shell .settings-rule code{font-size:12px;color:var(--ui-blue)}
+html .guirab-studio .app-shell .notice-box{background:var(--ui-raised);color:var(--ui-muted);border:1px solid var(--ui-line);border-radius:10px;padding:16px}
+html .guirab-studio .app-shell .notice-box p{font-size:11px;line-height:1.8}
+html .guirab-studio .app-shell .permanent-panel{background:var(--ui-blue-soft);padding:26px}
+html .guirab-studio .app-shell .permanent-panel h2{font-family:var(--font-display);font-size:24px;color:var(--ui-ink);font-weight:500}
+html .guirab-studio .app-shell .permanent-panel p{font-size:13px;color:var(--ui-muted);line-height:1.8}
+html .guirab-studio .app-shell .permanent-panel p strong{color:var(--ui-ink)}
+html .guirab-studio .app-shell .connection-line{gap:8px;color:var(--ui-muted)}
+html .guirab-studio .app-shell .connection-line>span{background:var(--ui-surface);border-color:var(--ui-line);font-size:10px;color:var(--ui-ink);padding:10px;border-radius:8px}
+html .guirab-studio .app-shell .text-button{color:var(--ui-blue);font-size:11px;min-height:32px}
+html .guirab-studio .app-shell .modal{border:1px solid var(--ui-line);border-radius:20px;padding:28px;background:var(--ui-surface);color:var(--ui-ink);box-shadow:0 24px 80px #10182135}
+html .guirab-studio .app-shell .modal h2{font-family:var(--font-display);font-size:28px;color:var(--ui-ink);font-weight:600}
+html .guirab-studio .app-shell .modal>p{font-size:13px;line-height:1.8;color:var(--ui-muted)}
+html .guirab-studio .app-shell .modal-actions{border-color:var(--ui-line);gap:10px}
+html .guirab-studio .app-shell .input-help{font-size:11px;line-height:1.8;color:var(--ui-muted)}
+html .guirab-studio .app-shell .modal-icon{background:var(--ui-blue-soft);color:var(--ui-blue);border:0;border-radius:12px}
+html .guirab-studio .app-shell .batch-modal-note{background:var(--ui-blue-soft);color:var(--ui-muted);border-color:var(--ui-line);border-radius:10px}
+html .guirab-studio .app-shell .batch-modal-note p{font-size:12px;line-height:1.7}
+html .guirab-studio .app-shell .toast{background:var(--ui-surface);border-color:var(--ui-line);color:var(--ui-green);box-shadow:0 12px 45px #10182125;border-radius:12px;max-width:min(580px,calc(100vw - 32px));left:calc(50% + 112px);font-size:12px;padding:14px 16px}
+html .guirab-studio .app-shell .toast span{color:var(--ui-ink)}
+html .guirab-studio .app-shell .toast.error{color:var(--ui-red);border-color:var(--ui-red)}
+
+@media(min-width:1600px){
+  html .guirab-studio .app-shell .workspace-grid{grid-template-columns:minmax(0,1fr) 330px}
+  html .guirab-studio .app-shell .preview-panel .plaque-stage{padding:30px 48px}
+  html .guirab-studio .app-shell main{padding-top:40px}
+}
+@media(max-width:1200px){
+  html .guirab-studio .app-shell .sidebar{width:200px;padding-inline:14px}
+  html .guirab-studio .app-shell .main-shell{margin-left:200px;width:calc(100% - 200px)}
+  html .guirab-studio .app-shell main{padding:28px 24px 20px}
+  html .guirab-studio .app-shell .topbar{padding-inline:24px}
+  html .guirab-studio .app-shell .workspace-grid{grid-template-columns:minmax(0,1fr)}
+  html .guirab-studio .app-shell .preview-panel{display:none}
+  html .guirab-studio .app-shell .print-grid{grid-template-columns:minmax(0,1fr) 290px;gap:18px}
+  html .guirab-studio .app-shell .settings-grid{grid-template-columns:minmax(0,1fr) 310px;gap:18px}
+  html .guirab-studio .app-shell .metric{padding:20px;gap:10px}
+  html .guirab-studio .app-shell .metric>small{padding-left:50px}
+  html .guirab-studio .app-shell .store-name{max-width:none}
+  html .guirab-studio .app-shell .toast{left:calc(50% + 100px)}
+}
+@media(max-width:960px){
+  html .guirab-studio .app-shell .sidebar{width:76px;padding:28px 12px 18px;align-items:center}
+  html .guirab-studio .app-shell .brand{padding:0 0 30px;gap:0}
+  html .guirab-studio .app-shell .brand>span:last-child{display:none}
+  html .guirab-studio .app-shell .nav-label{display:none}
+  html .guirab-studio .app-shell .sidebar nav{width:100%;gap:10px}
+  html .guirab-studio .app-shell .nav-item{font-size:0;justify-content:center;gap:0;padding:12px;position:relative}
+  html .guirab-studio .app-shell .nav-item svg{width:21px;height:21px}
+  html .guirab-studio .app-shell .nav-count{position:absolute;right:0;top:0;font-size:8px;min-width:16px;padding:0 3px}
+  html .guirab-studio .app-shell .sidebar-note{display:none}
+  html .guirab-studio .app-shell .account{margin-top:auto;padding:16px 0 0;justify-content:center;width:100%}
+  html .guirab-studio .app-shell .account>span:nth-child(2),html .guirab-studio .app-shell .account>svg{display:none}
+  html .guirab-studio .app-shell .main-shell{margin-left:76px;width:calc(100% - 76px)}
+  html .guirab-studio .app-shell .page-heading h1{font-size:32px}
+  html .guirab-studio .app-shell .metric>small{padding-left:0;margin-top:2px}
+  html .guirab-studio .app-shell .metric-icon{display:none}
+  html .guirab-studio .app-shell .metric{padding:18px}
+  html .guirab-studio .app-shell .toast{left:calc(50% + 38px)}
+  html .guirab-studio .app-shell .print-grid,html .guirab-studio .app-shell .settings-grid{grid-template-columns:minmax(0,1fr)}
+  html .guirab-studio .app-shell .print-preview{position:static;max-width:470px;justify-self:center;width:100%}
+}
+@media(max-width:640px){
+  html .guirab-studio .app-shell{display:block;padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+  html .guirab-studio .app-shell .sidebar{top:auto;bottom:0;left:0;right:0;width:100%;height:auto;min-height:0;border-right:0;border-top:1px solid var(--ui-line);padding:8px 12px max(8px,env(safe-area-inset-bottom));z-index:40;box-shadow:0 -4px 24px #18283b06}
+  html .guirab-studio .app-shell .sidebar>:not(nav){display:none}
+  html .guirab-studio .app-shell .sidebar nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;width:100%}
+  html .guirab-studio .app-shell .nav-item{flex-direction:column;font-size:9px;gap:5px;min-height:56px;padding:7px 3px;line-height:1.3;text-align:center;border-radius:10px}
+  html .guirab-studio .app-shell .nav-item.current{box-shadow:none}
+  html .guirab-studio .app-shell .nav-count{display:none}
+  html .guirab-studio .app-shell .nav-item svg{width:20px;height:20px}
+  html .guirab-studio .app-shell .main-shell{margin:0;width:100%}
+  html .guirab-studio .app-shell .topbar{height:64px;padding:0 18px;gap:8px;background:var(--ui-surface)}
+  html .guirab-studio .app-shell .breadcrumb{display:none}
+  html .guirab-studio .app-shell .breadcrumb-slash{display:none}
+  html .guirab-studio .app-shell .topbar strong{font-family:var(--font-display);font-size:15px;letter-spacing:-.3px}
+  html .guirab-studio .app-shell .topbar-actions{gap:8px}
+  html .guirab-studio .app-shell .topbar-actions>.private-badge{display:none}
+  html .guirab-studio .app-shell .theme-toggle{padding:8px;min-height:40px}
+  html .guirab-studio .app-shell .theme-toggle span{display:none}
+  html .guirab-studio .app-shell main{padding:26px 16px 20px}
+  html .guirab-studio .app-shell .page-heading{display:flex;align-items:flex-start;flex-direction:column;gap:20px;margin-bottom:24px}
+  html .guirab-studio .app-shell .page-heading h1{font-size:30px;letter-spacing:-1px;max-width:340px}
+  html .guirab-studio .app-shell .eyebrow{font-size:9px;margin-bottom:10px;letter-spacing:1.4px}
+  html .guirab-studio .app-shell .page-heading p{font-size:12px;line-height:1.8;margin-top:10px}
+  html .guirab-studio .app-shell .page-heading>.button{margin:0;min-height:44px;width:100%}
+  html .guirab-studio .app-shell .metrics{border-radius:12px;margin-bottom:22px}
+  html .guirab-studio .app-shell .metric{padding:14px 12px;display:block}
+  html .guirab-studio .app-shell .metric>div>span{font-size:10px;min-height:16px;line-height:1.5}
+  html .guirab-studio .app-shell .metric strong{font-size:28px;margin-top:6px;line-height:1.2}
+  html .guirab-studio .app-shell .metric>small{font-size:9px;line-height:1.5;margin-top:8px;padding:0}
+  html .guirab-studio .app-shell .workspace-grid{gap:16px}
+  html .guirab-studio .app-shell .panel{border-radius:14px}
+  html .guirab-studio .app-shell .panel-heading{padding:18px;min-height:80px}
+  html .guirab-studio .app-shell .panel-heading h2{font-size:18px}
+  html .guirab-studio .app-shell .table-toolbar{padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  html .guirab-studio .app-shell .search-field{min-height:46px}
+  html .guirab-studio .app-shell .search-field input{font-size:16px}
+  html .guirab-studio .app-shell .filter-field{margin:0;width:100%}
+  html .guirab-studio .app-shell .filter-field select{width:100%;font-size:13px;min-height:44px}
+  html .guirab-studio .app-shell .selection-toolbar{padding:12px 16px;align-items:center;gap:10px}
+  html .guirab-studio .app-shell .selection-toolbar>div{gap:9px}
+  html .guirab-studio .app-shell .batch-print-button{font-size:10px;padding:10px;min-height:40px}
+  html .guirab-studio .app-shell .table-scroll{overflow:visible}
+  html .guirab-studio .app-shell :is(.inventory-panel table,.inventory-panel tbody){display:block;min-width:0;width:100%}
+  html .guirab-studio .app-shell .inventory-panel thead{display:block;border-bottom:1px solid var(--ui-line)}
+  html .guirab-studio .app-shell .inventory-panel thead tr{display:block}
+  html .guirab-studio .app-shell .inventory-panel thead th:not(:first-child){display:none}
+  html .guirab-studio .app-shell .inventory-panel thead th.checkbox-cell{display:block;width:auto;padding:7px 16px;border:0}
+  html .guirab-studio .app-shell .table-select-all{min-height:44px;font-size:11px;font-weight:600;color:var(--ui-muted)}
+  html .guirab-studio .app-shell .mobile-select-label{display:inline}
+  html .guirab-studio .app-shell .inventory-panel tbody tr{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px 8px;padding:18px 16px;border-bottom:1px solid var(--ui-line)}
+  html .guirab-studio .app-shell .inventory-panel td{padding:0;border:0;min-width:0}
+  html .guirab-studio .app-shell .inventory-panel td:first-child{grid-column:1;grid-row:1;align-self:center;padding:0;box-shadow:none;width:auto}
+  html .guirab-studio .app-shell .inventory-panel td:nth-child(2){grid-column:2 / 4;grid-row:1}
+  html .guirab-studio .app-shell .inventory-panel td:nth-child(3){grid-column:2;grid-row:2;align-self:center}
+  html .guirab-studio .app-shell .inventory-panel td:nth-child(4){grid-column:2;grid-row:3}
+  html .guirab-studio .app-shell .inventory-panel td:nth-child(5){grid-column:3;grid-row:2 / 4;align-self:end}
+  html .guirab-studio .app-shell .store-name{min-width:0;max-width:100%;gap:10px}
+  html .guirab-studio .app-shell .store-name strong{font-size:11px;max-width:100%;gap:9px;flex-wrap:wrap}
+  html .guirab-studio .app-shell .store-name small{max-width:100%;font-size:12px;white-space:normal}
+  html .guirab-studio .app-shell .crm-inline-code{font-size:18px;padding:4px 7px}
+  html .guirab-studio .app-shell .store-avatar{width:38px;height:42px}
+  html .guirab-studio .app-shell .plate-checkbox{width:18px;height:18px}
+  html .guirab-studio .app-shell .status-badge{font-size:10px}
+  html .guirab-studio .app-shell .scan-cell strong{font-size:13px;display:inline}
+  html .guirab-studio .app-shell .scan-cell strong::after{content:' acessos';font-family:var(--font-body);font-size:10px;font-weight:500;color:var(--ui-muted)}
+  html .guirab-studio .app-shell .scan-cell small{display:none}
+  html .guirab-studio .app-shell .configure-button{font-size:10px;min-height:44px;padding:9px}
+  html .guirab-studio .app-shell .row-actions .icon-button{min-width:44px;min-height:44px}
+  html .guirab-studio .app-shell .table-footer{padding:15px 16px;font-size:9px;gap:12px;align-items:center}
+  html .guirab-studio .app-shell .table-footer>span:last-child{max-width:130px;line-height:1.5}
+  html .guirab-studio .app-shell .print-content{padding:16px}
+  html .guirab-studio .app-shell .batch-export-card{padding:18px}
+  html .guirab-studio .app-shell .selected-plate-chips>span{font-size:10px}
+  html .guirab-studio .app-shell .selected-plate-chips button{width:36px;min-height:36px}
+  html .guirab-studio .app-shell .batch-selection-summary{gap:12px;align-items:flex-start}
+  html .guirab-studio .app-shell .batch-export-actions{flex-direction:column}
+  html .guirab-studio .app-shell .batch-export-actions .button{width:100%}
+  html .guirab-studio .app-shell .export-button{padding:14px;gap:12px;min-height:76px}
+  html .guirab-studio .app-shell .export-button strong{font-size:12px}
+  html .guirab-studio .app-shell .export-button small{font-size:10px}
+  html .guirab-studio .app-shell :is(.form-input,.select-wrap select){font-size:16px}
+  html .guirab-studio .app-shell .settings-content{padding:18px}
+  html .guirab-studio .app-shell .domain-card{padding:16px;gap:12px}
+  html .guirab-studio .app-shell .domain-card strong{font-size:15px}
+  html .guirab-studio .app-shell .permanent-panel{padding:22px}
+  html .guirab-studio .app-shell .modal-overlay{padding:12px}
+  html .guirab-studio .app-shell .modal{padding:22px;border-radius:16px;max-height:calc(100dvh - 24px)}
+  html .guirab-studio .app-shell .modal h2{font-size:25px}
+  html .guirab-studio .app-shell .modal-actions{flex-wrap:wrap}
+  html .guirab-studio .app-shell .modal-actions .button{flex:1}
+  html .guirab-studio .app-shell .toast{left:16px;right:16px;bottom:calc(88px + env(safe-area-inset-bottom));max-width:none;transform:none;font-size:12px;z-index:100}
+  html .guirab-studio .app-shell .page-footer{font-size:9px;gap:20px;line-height:1.8}
+}
+@media(prefers-reduced-motion:reduce){
+  .guirab-studio *, .guirab-studio *::before,.guirab-studio *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}

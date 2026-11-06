@@ -1,0 +1,374 @@
+/* Fieldwork and customer records: presentation only. Map geometry and input layers stay in visit-map.css. */
+html .vm-root {
+  --vm-blue: var(--ui-blue);
+  --vm-border: var(--ui-line);
+  --vm-ink: var(--ui-ink);
+  --vm-muted: var(--ui-muted);
+  color: var(--ui-ink);
+  font-family: var(--font-body), sans-serif;
+  gap: 24px;
+}
+html .vm-root :is(.vm-intro h2, .vm-editor-heading h3, .vm-guide h3, .vm-records-heading h3, .vm-records-empty h4) {
+  font-family: var(--font-display), sans-serif;
+  color: var(--ui-ink);
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+html .vm-root .vm-intro h2 { font-size: clamp(28px, 3vw, 36px); line-height: 1.15; }
+html .vm-root .vm-eyebrow { color: var(--ui-blue); font-size: 11px; letter-spacing: .12em; }
+html .vm-root .vm-intro h2 + p { color: var(--ui-muted); font-size: 15px; line-height: 1.7; max-width: 65ch; }
+html .vm-root :is(.vm-stat, .vm-filters, .vm-map-card, .vm-editor-card, .vm-records, .vm-record) {
+  background: var(--ui-surface);
+  border-color: var(--ui-line);
+  color: var(--ui-ink);
+  box-shadow: none;
+}
+html .vm-root :is(.vm-map-card, .vm-editor-card, .vm-records, .vm-filters) { border-radius: 16px; }
+html .vm-root .vm-stat { padding: 20px; border-radius: 12px; gap: 8px; }
+html .vm-root .vm-stat:hover { background: var(--ui-raised); border-color: color-mix(in srgb, var(--ui-blue) 35%, var(--ui-line)); }
+html .vm-root .vm-stat.vm-stat-selected { background: var(--ui-blue-soft); border-color: var(--ui-blue); }
+html .vm-root .vm-stat-label { color: var(--ui-ink); font-size: 13px; }
+html .vm-root .vm-stat strong { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 34px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.045em; }
+html .vm-root .vm-stat-caption { color: var(--ui-muted); font-size: 12px; line-height: 1.55; }
+
+html .vm-root .vm-filters { padding: 22px; gap: 16px; grid-template-columns: minmax(190px, 1.5fr) minmax(130px, 1fr) minmax(130px, 1fr) minmax(150px, 1fr); }
+html .vm-root :is(.vm-filters label > span, .vm-region-search label, .vm-editor-card label) { color: var(--ui-ink); font-size: 13px; font-weight: 650; line-height: 1.5; }
+html .vm-root :is(.vm-filters input, .vm-filters select, .vm-editor-card input, .vm-editor-card select, .vm-editor-card textarea, .vm-region-search input, .vm-street-search) {
+  min-height: 46px;
+  padding: 11px 13px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-line);
+  border-radius: 9px;
+  color: var(--ui-ink);
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 1.5;
+}
+html .vm-root .vm-search input { padding-left: 40px; }
+html .vm-root .vm-search > div > svg { top: 14px; left: 13px; color: var(--ui-muted); }
+html .vm-root :is(input, textarea)::placeholder { color: var(--ui-muted); opacity: .85; }
+html .vm-root :is(input, select, textarea):focus-visible { outline: 3px solid color-mix(in srgb, var(--ui-blue) 25%, transparent); outline-offset: 2px; border-color: var(--ui-blue); }
+html .vm-root :is(button, a):focus-visible { outline: 3px solid var(--ui-blue); outline-offset: 3px; }
+html .vm-root :is(.vm-button, .vm-tool, .vm-drawing-actions .vm-button, .vm-form-actions .vm-button) {
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px !important; /* Legacy map buttons declare their size important. */
+  font-weight: 650 !important;
+  line-height: 1.5;
+}
+html .vm-root .vm-button-primary { background: var(--ui-blue-solid, #2558f5); border-color: var(--ui-blue-solid, #2558f5); color: #fff; box-shadow: none; }
+html .vm-root .vm-button-primary:hover:not(:disabled) { background: #1946d8; border-color: #1946d8; }
+html .vm-root :is(.vm-button-quiet, .vm-tool, .vm-brush-toolset button, .vm-street-list button) { background: var(--ui-surface); border-color: var(--ui-line); color: var(--ui-ink); }
+html .vm-root :is(.vm-button-quiet, .vm-tool, .vm-brush-toolset button):hover:not(:disabled) { background: var(--ui-raised); border-color: color-mix(in srgb, var(--ui-blue) 30%, var(--ui-line)); }
+html .vm-root :is(.vm-tool.vm-tool-active, .vm-map-navigation .vm-see-plates) { background: var(--ui-blue-soft); color: var(--ui-blue); border-color: color-mix(in srgb, var(--ui-blue) 25%, var(--ui-line)); }
+html .vm-root .vm-map-navigation .vm-tool { color: var(--ui-muted); }
+html .vm-root .vm-map-navigation .vm-see-plates { color: var(--ui-blue); }
+html .vm-root .vm-clear-filters { min-height: 44px; font-size: 13px !important; }
+html .vm-root :is(.vm-icon-button, .vm-message button) { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; color: inherit; }
+html .vm-root .vm-toolbar { padding: 12px; gap: 10px; background: var(--ui-surface); border-color: var(--ui-line); }
+html .vm-root :is(.vm-tools, .vm-map-navigation) { gap: 6px; }
+html .vm-root :is(.vm-region-panel, .vm-region-context, .vm-drawing) { padding: 20px; background: var(--ui-raised); border-color: var(--ui-line); color: var(--ui-ink); }
+html .vm-root .vm-region-search { gap: 12px; }
+html .vm-root :is(.vm-region-results strong, .vm-region-context strong, .vm-drawing strong) { color: var(--ui-ink); font-size: 14px; line-height: 1.55; }
+html .vm-root .vm-region-results button { min-height: 56px; padding: 13px; background: var(--ui-surface); border: 1px solid var(--ui-line); border-radius: 9px; }
+html .vm-root .vm-region-results button:hover { background: var(--ui-blue-soft); border-color: var(--ui-blue); }
+html .vm-root :is(.vm-region-results span, .vm-region-context span, .vm-region-empty, .vm-drawing p, .vm-paint-heading > span, .vm-brush-size) { color: var(--ui-muted); font-size: 13px; line-height: 1.65; }
+html .vm-root :is(.vm-region-results, .vm-street-list) { gap: 8px; }
+html .vm-root .vm-brush-toolset { gap: 8px; }
+html .vm-root .vm-brush-toolset button { min-height: 44px; min-width: 44px; padding: 10px 12px; font-size: 13px; border-radius: 8px; }
+html .vm-root .vm-brush-toolset button.vm-brush-selected { background: var(--ui-blue-solid, #2558f5); border-color: var(--ui-blue-solid, #2558f5); color: #fff; }
+html .vm-root .vm-brush-toolset button.vm-brush-selected:hover:not(:disabled) { background: #1946d8; border-color: #1946d8; }
+html .vm-root .vm-brush-size input { accent-color: var(--ui-blue); }
+html .vm-root .vm-street-selection { padding: 20px; background: color-mix(in srgb, var(--ui-green) 6%, var(--ui-surface)); border-color: var(--ui-line); }
+html .vm-root :is(.vm-street-selection > strong, .vm-street-selection > p, .vm-street-coverage) { color: var(--ui-green); font-size: 13px; line-height: 1.7; }
+html .vm-root .vm-street-selection > strong { font-size: 15px; }
+html .vm-root .vm-street-list button { min-height: 44px; padding: 10px 12px; font-size: 13px; }
+html .vm-root .vm-street-list button[aria-pressed="true"] { color: var(--ui-green); background: color-mix(in srgb, var(--ui-green) 12%, var(--ui-surface)); border-color: var(--ui-green); }
+html .vm-root :is(.vm-map-footer, .vm-map-legend > span, .vm-plate-legend > span) { color: var(--ui-muted); font-size: 12px; line-height: 1.65; }
+html .vm-root .vm-map-footer { padding: 15px 18px; }
+html .vm-root .vm-map-footer > span:first-child { color: var(--ui-ink); }
+html .vm-root :is(.vm-map-legend, .vm-plate-legend) { gap: 9px 17px; padding-right: 18px; padding-left: 18px; }
+html .vm-root .vm-plate-legend { padding-top: 3px; padding-bottom: 17px; }
+html .vm-root .vm-plate-legend > span:first-child { color: var(--ui-blue); }
+
+html .vm-root .vm-editor-card form { padding: 24px; gap: 21px; }
+html .vm-root .vm-editor-heading h3 { font-size: 23px; line-height: 1.25; }
+html .vm-root .vm-editor-card textarea { min-height: 120px; }
+html .vm-root :is(.vm-optional, .vm-character-count) { color: var(--ui-muted); font-size: 12px; line-height: 1.6; }
+html .vm-root .vm-geometry-summary { color: var(--ui-muted); border-color: var(--ui-line); font-size: 13px; padding: 10px 0; flex-wrap: wrap; }
+html .vm-root .vm-geometry-summary button { min-height: 44px; padding: 8px 0 8px 10px; color: var(--ui-blue); font-size: 13px; }
+html .vm-root .vm-editor-hint { font-size: 13px; padding: 12px; border-radius: 8px; }
+html .vm-root .vm-guide { padding: 28px; }
+html .vm-root .vm-guide h3 { font-size: 27px; line-height: 1.2; }
+html .vm-root .vm-guide-icon { background: var(--ui-blue-soft); color: var(--ui-blue); border-radius: 12px; margin-bottom: 24px; }
+html .vm-root :is(.vm-guide > p:not(.vm-eyebrow), .vm-guide li span, .vm-guide-note) { color: var(--ui-muted); font-size: 13px; line-height: 1.75; }
+html .vm-root .vm-guide li strong { color: var(--ui-ink); font-size: 14px; }
+html .vm-root .vm-guide li::before { border-color: var(--ui-line); color: var(--ui-blue); font-size: 11px; font-weight: 700; }
+html .vm-root .vm-guide-note { border-color: var(--ui-line); }
+html .vm-root .vm-records { padding: 26px; }
+html .vm-root .vm-records-heading h3 { font-size: 25px; }
+html .vm-root .vm-records-heading h3 span { background: var(--ui-blue-soft); color: var(--ui-blue); font-size: 12px; border-radius: 6px; padding: 4px 8px; }
+html .vm-root .vm-records-heading p { color: var(--ui-muted); font-size: 14px; line-height: 1.65; }
+html .vm-root .vm-record { padding: 20px; border-radius: 12px; }
+html .vm-root .vm-record-name { color: var(--ui-ink); font-size: 16px !important; line-height: 1.55; }
+html .vm-root .vm-record-name:hover { color: var(--ui-blue); }
+html .vm-root .vm-badge { font-size: 11px; padding: 5px 8px; }
+html .vm-root :is(.vm-record-meta, .vm-record-notes, .vm-archived-label) { color: var(--ui-muted); font-size: 12px; line-height: 1.75; }
+html .vm-root .vm-record-address { color: var(--ui-ink); font-size: 13px; line-height: 1.75; }
+html .vm-root .vm-record-actions { gap: 8px 14px; padding-top: 14px; }
+html .vm-root .vm-record-actions button { min-height: 44px; color: var(--ui-muted); font-size: 12px !important; }
+html .vm-root .vm-record-actions .vm-record-locate { color: var(--ui-blue); }
+html .vm-root .vm-record-archived { background: var(--ui-raised); }
+html .vm-root .vm-records-empty { color: var(--ui-muted); }
+html .vm-root .vm-records-empty h4 { font-size: 23px; }
+html .vm-root .vm-records-empty p { color: var(--ui-muted); font-size: 14px; }
+html .vm-root .vm-pagination { color: var(--ui-muted); font-size: 13px; border-color: var(--ui-line); padding-top: 20px; }
+html .vm-root .vm-map-loading { background: var(--ui-raised); color: var(--ui-muted); font-size: 14px; }
+html .vm-root .vm-message { padding: 14px 18px; font-size: 14px; line-height: 1.65; }
+html .vm-root .vm-message-success { color: var(--ui-green); background: color-mix(in srgb, var(--ui-green) 7%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-green) 23%, var(--ui-line)); }
+html .vm-root .vm-message-error { color: var(--ui-red); background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-red) 24%, var(--ui-line)); }
+html .vm-root .vm-tile-error { padding: 14px 18px; font-size: 13px; }
+html .vm-root .vm-tile-error button { min-height: 44px; padding: 8px 0; }
+
+/* Leaflet surfaces only: never filter tiles or modify the paint and marker layers. */
+html .vm-root .leaflet-tooltip { font-family: var(--font-body), sans-serif; font-size: 13px; line-height: 1.5; background: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-line); border-radius: 7px; padding: 8px 11px; box-shadow: 0 3px 12px #18283b16; }
+html .vm-root .leaflet-tooltip-top::before { border-top-color: var(--ui-line); }
+html .vm-root .leaflet-tooltip-bottom::before { border-bottom-color: var(--ui-line); }
+html .vm-root :is(.leaflet-popup-content-wrapper, .leaflet-popup-tip, .leaflet-control-zoom a, .leaflet-control-attribution) { background: var(--ui-surface); color: var(--ui-ink); }
+html .vm-root .leaflet-control-zoom { border-color: var(--ui-line); box-shadow: 0 2px 8px #18283b14; }
+html .vm-root .leaflet-control-zoom a { width: 44px; height: 44px; line-height: 44px; border-color: var(--ui-line); }
+html .vm-root .leaflet-control-attribution a { color: var(--ui-blue); }
+html .vm-root .leaflet-popup-content-wrapper { border: 1px solid var(--ui-line); border-radius: 12px; box-shadow: 0 8px 28px #18283b18; }
+html .vm-root .leaflet-popup-content { margin: 18px; }
+html .vm-root .vm-popup { color: var(--ui-muted); font-family: var(--font-body), sans-serif; font-size: 13px; line-height: 1.65; }
+html .vm-root .vm-popup strong { color: var(--ui-ink); font-size: 16px; font-family: var(--font-display), sans-serif; font-weight: 600; }
+html .vm-root .vm-popup p { font-size: 13px; }
+html .vm-root .vm-popup button { min-height: 44px; font-family: var(--font-body), sans-serif; font-size: 13px; background: var(--ui-blue-soft); color: var(--ui-blue); padding: 10px 14px; border-radius: 8px; }
+html .vm-root .vm-plate-popup .vm-plate-popup-code { color: var(--ui-blue); background: var(--ui-blue-soft); font-size: 12px; padding: 5px 8px; }
+html .vm-root .vm-plate-popup .vm-plate-popup-code.vm-plate-paused { color: var(--ui-muted); background: var(--ui-raised); }
+
+/* The short plate code anchors the customer record, like the physical label in the field. */
+html :is(.crm-drawer-overlay .crm-drawer, .modal-overlay .modal, .crm-confirm-overlay .crm-confirm-dialog) { font-family: var(--font-body), sans-serif; background: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-line); }
+html .crm-drawer-overlay .crm-drawer { width: min(680px, 100%); box-shadow: -16px 0 60px #18283b1c; }
+html .crm-drawer .crm-drawer-header { padding: 26px 30px; border-color: var(--ui-line); }
+html .crm-drawer .crm-kicker { color: var(--ui-muted); font-size: 11px; line-height: 1.5; letter-spacing: .12em; }
+html .crm-drawer .crm-drawer-header h2 { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 29px; line-height: 1.2; font-weight: 600; letter-spacing: -.035em; }
+html .crm-drawer .crm-drawer-scroll { padding: 28px 30px 32px; }
+html .crm-drawer .crm-record-identity { gap: 17px; margin-bottom: 24px; }
+html .crm-drawer .crm-business-avatar { width: 60px; height: 60px; background: var(--ui-blue-soft); color: var(--ui-blue); border: 1px solid var(--ui-line); border-radius: 14px; }
+html .crm-drawer .crm-record-identity h3 { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 27px; line-height: 1.25; letter-spacing: -.035em; font-weight: 600; margin-bottom: 10px; }
+html .crm-drawer .crm-record-code { padding: 20px; background: var(--ui-blue-soft); border-color: color-mix(in srgb, var(--ui-blue) 20%, var(--ui-line)); gap: 24px; border-radius: 12px; margin: 0 0 22px; }
+html .crm-drawer .crm-record-code span { color: var(--ui-muted); font-size: 11px; line-height: 1.5; letter-spacing: .1em; }
+html .crm-drawer .crm-record-code strong { color: var(--ui-blue); font-size: 33px; line-height: 1.15; letter-spacing: .12em; }
+html .crm-drawer .crm-record-code > p { color: var(--ui-ink); font-size: 13px; line-height: 1.7; }
+html .crm-drawer :is(.crm-record-actions > .button, .crm-history-entry-heading > .button, .crm-reset-section > .button) { min-height: 44px; font-size: 13px; padding: 11px 15px; }
+html .crm-drawer .crm-record-actions { margin-bottom: 28px; }
+html .crm-drawer .crm-section-heading { margin-bottom: 18px; color: var(--ui-muted); }
+html .crm-drawer .crm-section-heading h3 { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 19px; font-weight: 600; letter-spacing: -.025em; }
+html .crm-drawer .crm-section-heading p { color: var(--ui-muted); font-size: 13px; line-height: 1.65; margin-top: 6px; }
+html .crm-drawer .crm-reviews-section { background: var(--ui-raised); border-color: var(--ui-line); border-radius: 12px; padding: 20px; margin-bottom: 28px; }
+html .crm-drawer .crm-review-cards { gap: 10px; }
+html .crm-drawer .crm-review-cards > div { padding: 17px 14px; background: var(--ui-surface); border-color: var(--ui-line); border-radius: 9px; }
+html .crm-drawer .crm-review-cards > div > span { color: var(--ui-muted); font-size: 12px; line-height: 1.5; margin-bottom: 12px; }
+html .crm-drawer .crm-review-cards strong { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+html .crm-drawer .crm-review-cards small { color: var(--ui-muted); font-size: 12px; line-height: 1.6; margin-top: 9px; }
+html .crm-drawer .crm-review-cards .crm-growth { background: color-mix(in srgb, var(--ui-green) 7%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-green) 22%, var(--ui-line)); }
+html .crm-drawer .crm-review-cards .crm-growth strong { color: var(--ui-green); }
+html .crm-drawer .crm-review-cards .crm-growth.negative { background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-red) 22%, var(--ui-line)); }
+html .crm-drawer .crm-review-cards .crm-growth.negative strong { color: var(--ui-red); }
+html .crm-drawer :is(.crm-manual-note, .crm-manual-note > span) { font-size: 12px; line-height: 1.75; color: var(--ui-muted); }
+html .crm-drawer .crm-info-section { margin: 28px 0; }
+html .crm-drawer .crm-info-grid { gap: 24px; }
+html .crm-drawer .crm-info-grid dt { color: var(--ui-muted); font-size: 12px; line-height: 1.5; gap: 7px; margin-bottom: 8px; }
+html .crm-drawer .crm-info-grid dt svg { color: var(--ui-muted); }
+html .crm-drawer .crm-info-grid dd { color: var(--ui-ink); font-size: 14px; line-height: 1.75; }
+html .crm-drawer .crm-info-grid dd a { color: var(--ui-blue); }
+html .crm-drawer .crm-notes-section { border-color: var(--ui-line); padding-top: 26px; margin: 28px 0; }
+html .crm-drawer .crm-notes-section > p { background: var(--ui-raised); color: var(--ui-ink); border-color: var(--ui-line); font-size: 14px; line-height: 1.75; padding: 18px; border-radius: 10px; }
+html .crm-drawer .crm-notes-section > p.empty { color: var(--ui-muted); font-size: 13px; }
+html .crm-drawer .crm-permanent-link { padding: 17px; background: var(--ui-raised); border-color: var(--ui-line); color: var(--ui-blue); border-radius: 10px; }
+html .crm-drawer .crm-permanent-link span { color: var(--ui-muted); font-size: 12px; line-height: 1.5; }
+html .crm-drawer .crm-permanent-link code { color: var(--ui-blue); font-size: 12px; line-height: 1.7; }
+html .crm-drawer .crm-history-section { border-color: var(--ui-line); margin-top: 30px; padding-top: 28px; }
+html .crm-drawer .crm-history-state { background: var(--ui-raised); color: var(--ui-muted); border-color: var(--ui-line); font-size: 13px; padding: 24px 18px; }
+html .crm-drawer .crm-history-entry { padding: 20px; border-color: var(--ui-line); background: var(--ui-surface); border-radius: 12px; }
+html .crm-drawer .crm-history-entry-heading strong { color: var(--ui-ink); font-size: 15px; }
+html .crm-drawer .crm-history-entry-heading > div > span { color: var(--ui-muted); font-size: 12px; line-height: 1.6; }
+html .crm-drawer .crm-history-counts { color: var(--ui-muted); font-size: 12px; line-height: 1.75; }
+html .crm-drawer .crm-history-counts b { color: var(--ui-ink); }
+html .crm-drawer .crm-history-entry details { border-color: var(--ui-line); }
+html .crm-drawer .crm-history-entry summary { color: var(--ui-blue); min-height: 44px; font-size: 13px; gap: 12px; }
+html .crm-drawer .crm-history-detail { gap: 17px; }
+html .crm-drawer .crm-history-detail dt { color: var(--ui-muted); font-size: 12px; margin-bottom: 5px; }
+html .crm-drawer .crm-history-detail dd { color: var(--ui-ink); font-size: 13px; line-height: 1.7; }
+html .crm-drawer .crm-reset-section { background: color-mix(in srgb, var(--ui-red) 4%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-red) 17%, var(--ui-line)); padding: 20px; border-radius: 12px; }
+html .crm-drawer .crm-reset-section h3 { color: var(--ui-ink); font-size: 15px; }
+html .crm-drawer .crm-reset-section p { color: var(--ui-muted); font-size: 13px; line-height: 1.65; }
+html .crm-drawer .crm-reset-section > .button { color: var(--ui-red); border-color: color-mix(in srgb, var(--ui-red) 30%, var(--ui-line)); background: var(--ui-surface); }
+html .crm-drawer .crm-drawer-footer { background: var(--ui-raised); color: var(--ui-muted); border-color: var(--ui-line); font-size: 12px; line-height: 1.6; padding: 17px 30px; }
+html :is(.crm-drawer, .crm-edit-modal, .crm-confirm-dialog) .crm-feedback { font-size: 14px; line-height: 1.65; padding: 16px; border-radius: 10px; }
+html :is(.crm-drawer, .crm-edit-modal, .crm-confirm-dialog) .crm-feedback.success { color: var(--ui-green); border-color: color-mix(in srgb, var(--ui-green) 22%, var(--ui-line)); background: color-mix(in srgb, var(--ui-green) 6%, var(--ui-surface)); }
+html :is(.crm-drawer, .crm-edit-modal, .crm-confirm-dialog) .crm-feedback.error { color: var(--ui-red); border-color: color-mix(in srgb, var(--ui-red) 22%, var(--ui-line)); background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); }
+
+html .modal-overlay .modal { padding: 32px; border-radius: 18px; box-shadow: 0 24px 80px #18283b24; }
+html .modal-overlay .crm-edit-modal { width: min(760px, 100%); }
+html .modal :is(.modal-icon, .icon-button) { min-width: 44px; min-height: 44px; }
+html .modal .modal-icon { width: 52px; height: 52px; border-radius: 13px; background: var(--ui-blue-soft); color: var(--ui-blue); border-color: var(--ui-line); }
+html .modal-overlay .modal h2 { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 31px; line-height: 1.2; font-weight: 600; letter-spacing: -.035em; }
+html .modal-overlay .modal > p { color: var(--ui-muted); font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
+html .modal .field-label { color: var(--ui-ink); font-size: 13px; line-height: 1.6; font-weight: 650; margin-bottom: 8px; }
+html .modal .form-input { min-height: 48px; padding: 12px 14px; margin-bottom: 22px; color: var(--ui-ink); background: var(--ui-surface); border-color: var(--ui-line); border-radius: 9px; font-family: var(--font-body), sans-serif; font-size: 15px; line-height: 1.6; }
+html .modal .form-input::placeholder { color: var(--ui-muted); opacity: .85; }
+html .modal .form-input:focus-visible { outline: 3px solid color-mix(in srgb, var(--ui-blue) 25%, transparent); border-color: var(--ui-blue); outline-offset: 2px; }
+html .modal :is(.input-help, .resolve-controls > span, .resolve-error small) { color: var(--ui-muted); font-size: 13px; line-height: 1.75; }
+html .modal .resolve-controls { flex-wrap: wrap; gap: 10px 14px; }
+html .modal .resolve-button { min-height: 44px; padding: 11px 15px; font-size: 13px; }
+html .modal :is(.resolve-error, .resolved-link-preview) { padding: 18px; border-radius: 11px; }
+html .modal .resolve-error { color: var(--ui-red); border-color: color-mix(in srgb, var(--ui-red) 25%, var(--ui-line)); background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); }
+html .modal .resolve-error p { font-size: 14px; line-height: 1.7; }
+html .modal .resolve-error small { color: var(--ui-red); }
+html .modal .resolved-link-preview { background: color-mix(in srgb, var(--ui-green) 5%, var(--ui-surface)); border-color: color-mix(in srgb, var(--ui-green) 23%, var(--ui-line)); }
+html .modal :is(.resolved-link-heading, .resolved-link-heading strong) { color: var(--ui-green); font-size: 14px; line-height: 1.5; }
+html .modal .resolved-link-preview > input { min-height: 44px; font-size: 12px; background: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-line); padding: 11px; }
+html .modal :is(.resolved-destination-note, .resolved-link-footer > span) { color: var(--ui-muted); font-size: 12px; line-height: 1.7; }
+html .modal .resolved-link-footer { flex-wrap: wrap; gap: 8px 16px; }
+html .modal .resolved-link-footer > a { color: var(--ui-green); font-size: 13px; min-height: 44px; }
+html .modal .review-link-help { padding: 12px 0; margin-bottom: 25px; border-color: var(--ui-line); font-size: 13px; color: var(--ui-muted); line-height: 1.75; }
+html .modal .review-link-help summary { min-height: 44px; padding: 10px 0; color: var(--ui-blue); font-weight: 650; }
+html .modal .review-link-help p { font-size: 12px; line-height: 1.7; }
+html .modal .review-link-help a { color: var(--ui-blue); min-height: 44px; }
+html .modal .crm-form-section { border-color: var(--ui-line); margin-top: 28px; padding-top: 28px; }
+html .modal .crm-form-section h3 { color: var(--ui-ink); font-family: var(--font-display), sans-serif; font-size: 22px; line-height: 1.3; font-weight: 600; letter-spacing: -.025em; margin-bottom: 9px; }
+html .modal .crm-form-section > p { color: var(--ui-muted); font-size: 14px; line-height: 1.7; margin-bottom: 23px; }
+html .modal .crm-form-grid { gap: 0 22px; }
+html .modal .crm-form-grid .crm-field-hint { color: var(--ui-muted); font-size: 12px; line-height: 1.7; margin-top: -12px; margin-bottom: 24px; }
+html .modal .crm-form-grid textarea { min-height: 130px; font-family: var(--font-body), sans-serif; }
+html .modal .crm-location-tools { padding: 20px; border-radius: 12px; background: var(--ui-raised); border-color: var(--ui-line); }
+html .modal .crm-location-tools > div:first-child > strong { color: var(--ui-ink); font-size: 15px; font-weight: 650; }
+html .modal .crm-location-tools > div:first-child > p { color: var(--ui-muted); font-size: 13px; line-height: 1.75; margin-top: 8px; margin-bottom: 17px; }
+html .modal .crm-location-tools > .button { min-height: 44px; padding: 11px 15px; color: var(--ui-blue); font-size: 13px; background: var(--ui-surface); border-color: var(--ui-line); }
+html .modal .crm-location-error { color: var(--ui-red); font-size: 13px; line-height: 1.7; }
+html .modal .crm-location-result { padding: 15px; gap: 11px; border-radius: 9px; background: var(--ui-surface); border-color: var(--ui-line); color: var(--ui-blue); }
+html .modal .crm-location-result strong { color: var(--ui-blue); font-size: 13px; line-height: 1.7; }
+html .modal .crm-location-result :is(span, small) { color: var(--ui-muted); font-size: 12px; line-height: 1.7; }
+html .modal .crm-location-result > button { min-width: 44px; min-height: 44px; color: var(--ui-muted); border-radius: 8px; }
+html .modal .crm-location-result > button:hover:not(:disabled) { background: var(--ui-blue-soft); color: var(--ui-blue); }
+html .modal .permanent-code { background: var(--ui-raised); border-color: var(--ui-line); color: var(--ui-muted); font-size: 13px; line-height: 1.65; padding: 17px; }
+html .modal .permanent-code strong { color: var(--ui-blue); font-size: 13px; line-height: 1.65; }
+html .modal .modal-actions { padding-top: 24px; margin-top: 28px; border-color: var(--ui-line); gap: 12px; }
+html :is(.modal, .crm-confirm-dialog) .button { min-height: 44px; font-size: 14px; padding: 12px 17px; }
+html .modal .form-error { padding: 15px 17px; font-size: 14px; line-height: 1.7; color: var(--ui-red); border-color: color-mix(in srgb, var(--ui-red) 25%, var(--ui-line)); background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); }
+html .modal .batch-modal-note { padding: 17px; border-radius: 10px; color: var(--ui-blue); background: var(--ui-blue-soft); border-color: var(--ui-line); }
+html .modal .batch-modal-note p { color: var(--ui-muted); font-size: 13px; line-height: 1.7; }
+html .modal .batch-quantity { font-family: var(--font-display), sans-serif; font-size: 28px; max-width: 145px; }
+
+html .crm-confirm-overlay .crm-confirm-dialog { width: 500px; padding: 30px; border-radius: 16px; box-shadow: 0 24px 80px #18283b24; }
+html .crm-confirm-dialog .crm-reset-icon { background: color-mix(in srgb, var(--ui-red) 6%, var(--ui-surface)); color: var(--ui-red); border-color: color-mix(in srgb, var(--ui-red) 20%, var(--ui-line)); }
+html .crm-confirm-overlay .crm-confirm-dialog h2 { font-family: var(--font-display), sans-serif; color: var(--ui-ink); font-size: 28px; line-height: 1.25; letter-spacing: -.03em; font-weight: 600; }
+html .crm-confirm-overlay .crm-confirm-dialog > p { color: var(--ui-muted); font-size: 14px; line-height: 1.8; margin: 16px 0 22px; }
+html .crm-confirm-dialog .crm-reset-assurance { background: var(--ui-raised); color: var(--ui-muted); border-color: var(--ui-line); padding: 16px; font-size: 13px; line-height: 1.7; border-radius: 10px; }
+html .crm-confirm-dialog .crm-confirm-actions { border-color: var(--ui-line); gap: 10px; flex-wrap: wrap; }
+html .crm-confirm-dialog .crm-danger-button { background: var(--ui-red-solid, #b63d3a); border-color: var(--ui-red-solid, #b63d3a); color: #fff; }
+html .crm-confirm-dialog .crm-danger-button:hover:not(:disabled) { background: #9d302e; border-color: #9d302e; }
+
+/* The registration preview follows the form's reading rhythm without resizing its viewport. */
+html .modal .registration-location-map { background: var(--ui-surface); border-color: var(--ui-line); border-radius: 12px; }
+html .modal .registration-location-heading { padding: 18px; gap: 12px; flex-wrap: wrap; }
+html .modal .registration-location-heading h3 { color: var(--ui-ink); font-family: var(--font-body), sans-serif; font-size: 15px; line-height: 1.5; letter-spacing: 0; margin: 0; }
+html .modal .registration-location-heading p { color: var(--ui-muted); font-size: 12px; line-height: 1.65; }
+html .modal .registration-location-recenter { min-height: 44px; font-size: 12px; padding: 10px 12px; border-color: var(--ui-line); background: var(--ui-raised); color: var(--ui-ink); margin-left: auto; }
+html .modal .registration-location-caption { padding: 18px; gap: 9px; }
+html .modal .registration-location-caption :is(.registration-location-legend, code, small) { color: var(--ui-muted); font-size: 12px; line-height: 1.7; }
+html .modal .registration-location-caption > p { color: var(--ui-ink); font-size: 14px; line-height: 1.7; }
+html .modal .registration-location-caption > a { min-height: 44px; color: var(--ui-blue); font-size: 13px; }
+html .modal :is(.registration-location-state p, .registration-location-tile-error p) { font-size: 13px; line-height: 1.7; }
+html .modal :is(.registration-location-state button, .registration-location-tile-error button) { min-height: 44px; font-family: var(--font-body), sans-serif; font-size: 13px; }
+
+@media (max-width: 1250px) {
+  html .vm-root .vm-filters { grid-template-columns: minmax(190px, 1.5fr) minmax(140px, 1fr); }
+  html .vm-root .vm-record-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html .vm-root .vm-map-navigation { margin-left: 0; }
+}
+@media (max-width: 760px) {
+  html .vm-root { gap: 20px; }
+  html .vm-root .vm-intro { align-items: flex-start; flex-wrap: wrap; }
+  html .vm-root .vm-intro > .vm-button { margin-left: auto; }
+  html .vm-root .vm-stats { gap: 10px; }
+  html .vm-root .vm-stat { padding: 17px; }
+  html .vm-root .vm-stat strong { font-size: 30px; }
+  html .vm-root .vm-filters { padding: 18px; gap: 15px; }
+  html .vm-root .vm-records { padding: 21px; }
+  html .vm-root .vm-records-heading { align-items: flex-start; flex-wrap: wrap; }
+  html .vm-root .vm-records-heading h3 { font-size: 23px; }
+  html .vm-root .vm-tools { width: 100%; gap: 6px; }
+  html .vm-root .vm-tools .vm-tool { flex: 1 1 auto; }
+  html .vm-root .vm-map-navigation { width: 100%; gap: 6px; justify-content: flex-start; }
+  html .vm-root .vm-map-navigation .vm-tool { flex: 1 1 auto; }
+  html .vm-root .vm-region-search { flex-wrap: wrap; }
+  html .vm-root .vm-region-search label { flex-basis: 100%; }
+  html .vm-root .vm-region-search > button { margin-left: auto; }
+  html .vm-root .vm-editor-card form { padding: 22px; }
+  html .crm-drawer .crm-drawer-header { padding: 23px; }
+  html .crm-drawer .crm-drawer-scroll { padding: 25px 23px; }
+  html .crm-drawer .crm-drawer-footer { padding: 16px 23px; }
+  html .modal-overlay .modal { padding: 26px; }
+}
+@media (max-width: 540px) {
+  html .vm-root .vm-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html .vm-root .vm-stat { padding: 16px; }
+  html .vm-root .vm-stat-label { min-height: 20px; }
+  html .vm-root .vm-stat-caption { font-size: 12px; }
+  html .vm-root .vm-filters { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 16px; }
+  html .vm-root .vm-filters .vm-search { grid-column: 1 / -1; }
+  html .vm-root .vm-filters label:last-of-type { grid-column: 1 / -1; }
+  html .vm-root :is(.vm-filters input, .vm-filters select, .vm-editor-card input, .vm-editor-card select, .vm-editor-card textarea, .vm-region-search input, .vm-street-search) { font-size: 16px; }
+  html .vm-root .vm-record-grid { grid-template-columns: minmax(0, 1fr); }
+  html .vm-root .vm-records { padding: 18px; }
+  html .vm-root .vm-record { padding: 18px; }
+  html .vm-root .vm-record-actions { justify-content: space-between; gap: 8px; }
+  html .vm-root .vm-toolbar { padding: 10px; }
+  html .vm-root .vm-tool { padding: 10px 11px; }
+  html .vm-root .vm-map-navigation .vm-tool span { font-size: 12px; }
+  html .vm-root :is(.vm-region-panel, .vm-region-context, .vm-drawing, .vm-street-selection) { padding: 16px; }
+  html .vm-root .vm-region-context { gap: 12px; }
+  html .vm-root .vm-brush-tools { align-items: stretch; }
+  html .vm-root .vm-brush-size { justify-content: flex-start; min-width: 180px; }
+  html .vm-root .vm-drawing-actions .vm-button { flex: 1; }
+  html .vm-root .vm-form-row { grid-template-columns: 1fr; gap: 20px; }
+  html .vm-root .vm-editor-card form { padding: 20px; }
+  html .vm-root .vm-pagination { flex-wrap: wrap; gap: 14px; }
+  html .vm-root .vm-pagination > div { width: 100%; justify-content: space-between; }
+  html .crm-drawer .crm-drawer-header h2 { font-size: 26px; }
+  html .crm-drawer .crm-record-identity h3 { font-size: 25px; }
+  html .crm-drawer .crm-record-code { align-items: flex-start; flex-wrap: wrap; gap: 14px; padding: 18px; }
+  html .crm-drawer .crm-record-code > p { flex-basis: 100%; }
+  html .crm-drawer .crm-review-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html .crm-drawer .crm-review-cards .crm-growth { grid-column: 1 / -1; }
+  html .crm-drawer .crm-reviews-section { padding: 17px; }
+  html .crm-drawer .crm-review-cards strong { font-size: 29px; }
+  html .crm-drawer .crm-info-grid { grid-template-columns: 1fr; gap: 22px; }
+  html .crm-drawer .crm-info-grid > div.wide { grid-column: auto; }
+  html .crm-drawer .crm-history-entry-heading { flex-wrap: wrap; gap: 13px; }
+  html .crm-drawer .crm-history-entry-heading > .button { margin-left: auto; }
+  html .crm-drawer .crm-reset-section { align-items: flex-start; flex-wrap: wrap; gap: 14px; }
+  html .crm-drawer .crm-reset-section > .button { margin-left: auto; }
+  html .modal-overlay .modal { padding: 23px; }
+  html .modal-overlay .modal h2 { font-size: 28px; }
+  html .modal .crm-form-grid { grid-template-columns: 1fr; }
+  html .modal .crm-form-grid > .wide { grid-column: auto; }
+  html .modal .form-input { font-size: 16px; }
+  html .modal .crm-location-tools { padding: 17px; }
+  html .modal .crm-location-tools > .button { width: 100%; }
+  html .modal .crm-location-result { padding: 13px; }
+  html .modal .crm-location-result strong { font-size: 12px; }
+  html .modal .modal-actions { flex-wrap: wrap; gap: 10px; }
+  html .modal .modal-actions > .button { flex: 1; }
+  html .crm-confirm-overlay .crm-confirm-dialog { padding: 25px; }
+  html .crm-confirm-dialog .crm-confirm-actions > .button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html .vm-root :is(button, input, select, textarea), html :is(.crm-drawer, .crm-edit-modal, .crm-confirm-dialog) :is(button, input, textarea) { transition: none; }
+}

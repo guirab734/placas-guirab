@@ -1,0 +1,302 @@
+/* Fieldwork is a map canvas with a visit journal, rather than a metrics page. */
+body.guirab-next .fieldwork {
+  --vm-blue: var(--g-teal);
+  --vm-border: var(--g-line);
+  --vm-ink: var(--g-ink);
+  --vm-muted: var(--g-muted);
+  color: var(--g-ink);
+  gap: 22px;
+  font-family: var(--g-body), sans-serif;
+}
+body.guirab-next .fieldwork-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 4px 0 0; }
+body.guirab-next .fieldwork-live { display: flex; gap: 7px; align-items: center; color: var(--g-teal); font-size: 11px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+body.guirab-next .fieldwork-live i { height: 6px; width: 6px; border-radius: 50%; background: currentColor; }
+body.guirab-next .fieldwork-heading h1 { font-family: var(--g-display), sans-serif; font-size: clamp(22px, 2.3vw, 31px); font-weight: 600; letter-spacing: -.055em; margin-top: 5px; }
+body.guirab-next .fieldwork .vm-workspace { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+body.guirab-next .fieldwork .vm-workspace.fieldwork-editing { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; }
+body.guirab-next .fieldwork .vm-map-card { background: var(--g-paper); border: 1px solid var(--g-line); border-radius: 22px; box-shadow: 0 8px 28px #142c2908; }
+body.guirab-next .fieldwork .vm-toolbar { background: var(--g-paper); padding: 12px; gap: 12px; border-color: var(--g-line); }
+body.guirab-next .fieldwork .vm-tools { padding: 4px; border-radius: 13px; background: var(--g-bg); gap: 3px; }
+body.guirab-next .fieldwork .vm-tool { font: 650 12px/1.3 var(--g-body), sans-serif !important; color: var(--g-ink); min-height: 40px; padding: 9px 12px; gap: 7px; border-radius: 9px; }
+body.guirab-next .fieldwork .vm-tool:hover:not(:disabled) { background: var(--g-bg); color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-tools .vm-tool:hover:not(:disabled) { background: var(--g-paper); }
+body.guirab-next .fieldwork .vm-tool.vm-tool-active { background: var(--g-teal); color: var(--g-paper); border-color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-map-navigation { gap: 4px; }
+body.guirab-next .fieldwork .vm-map-navigation .vm-tool { font-size: 11px !important; color: var(--g-muted); }
+body.guirab-next .fieldwork .vm-map-navigation .vm-tool:first-child { background: var(--g-bg); color: var(--g-ink); border: 1px solid var(--g-line); }
+body.guirab-next .fieldwork .vm-map-navigation .vm-see-plates { color: var(--g-teal); background: transparent; }
+body.guirab-next .fieldwork .vm-map-shell { height: clamp(430px, 53vh, 620px); }
+body.guirab-next .fieldwork .vm-map-footer { background: var(--g-paper); padding: 13px 18px 8px; color: var(--g-muted); font-size: 11px; }
+body.guirab-next .fieldwork .vm-map-footer > span:first-child { color: var(--g-ink); }
+body.guirab-next .fieldwork :is(.vm-map-legend, .vm-plate-legend) { padding-left: 18px; padding-right: 18px; gap: 10px 18px; }
+body.guirab-next .fieldwork .vm-map-legend > span { color: var(--g-muted); font-size: 10px; }
+body.guirab-next .fieldwork .vm-plate-legend { border-top: 1px solid var(--g-line); padding-top: 11px; padding-bottom: 13px; color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-plate-legend :is(.vm-plate-legend-paused, .vm-plate-legend-missing) { color: var(--g-muted); }
+body.guirab-next .fieldwork :is(.vm-button, .vm-drawing-actions .vm-button) { border-radius: 10px; min-height: 40px; font-family: var(--g-body), sans-serif; font-size: 12px !important; font-weight: 650 !important; }
+body.guirab-next .fieldwork .vm-button-primary { background: var(--g-teal); border-color: var(--g-teal); color: var(--g-paper); box-shadow: none; }
+body.guirab-next .fieldwork .vm-button-primary:hover:not(:disabled) { filter: brightness(.9); }
+body.guirab-next .fieldwork .vm-button-quiet { color: var(--g-ink); background: var(--g-paper); border-color: var(--g-line); }
+body.guirab-next .fieldwork .vm-button-quiet:hover:not(:disabled) { background: var(--g-bg); border-color: var(--g-muted); }
+body.guirab-next .fieldwork :is(.vm-region-panel, .vm-region-context, .vm-drawing, .vm-street-selection) { background: var(--g-bg); border-color: var(--g-line); padding: 18px; }
+body.guirab-next .fieldwork :is(.vm-region-context strong, .vm-region-results strong, .vm-drawing strong, .vm-street-selection > strong) { color: var(--g-ink); font-size: 13px; }
+body.guirab-next .fieldwork :is(.vm-region-context span, .vm-region-results span, .vm-region-empty, .vm-drawing p, .vm-paint-heading > span, .vm-street-selection > p, .vm-brush-size, .vm-region-search label) { color: var(--g-muted); font-size: 12px; line-height: 1.6; }
+body.guirab-next .fieldwork :is(.vm-region-search input, .vm-street-search, .vm-editor-card input, .vm-editor-card select, .vm-editor-card textarea, .vm-filters input, .vm-filters select) { background: var(--g-paper); color: var(--g-ink); border: 1px solid var(--g-line); border-radius: 9px; min-height: 44px; font-size: 13px !important; padding: 10px 12px; font-family: var(--g-body), sans-serif; }
+body.guirab-next .fieldwork .vm-region-results button { background: var(--g-paper); border-color: var(--g-line); padding: 12px 14px; border-radius: 10px; }
+body.guirab-next .fieldwork .vm-region-results button:hover:not(:disabled) { border-color: var(--g-teal); }
+body.guirab-next .fieldwork :is(.vm-brush-toolset button, .vm-street-list button) { min-height: 40px; padding: 9px 12px; color: var(--g-ink); background: var(--g-paper); border-color: var(--g-line); font-size: 12px; }
+body.guirab-next .fieldwork :is(.vm-brush-toolset button.vm-brush-selected, .vm-street-list button[aria-pressed="true"]) { background: var(--g-teal); color: var(--g-paper); border-color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-brush-size input { accent-color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-editor-card { background: var(--g-paper); border-color: var(--g-line); border-radius: 20px; box-shadow: none; }
+body.guirab-next .fieldwork .vm-editor-card form { padding: 22px; gap: 19px; }
+body.guirab-next .fieldwork .vm-editor-heading { border-bottom: 1px solid var(--g-line); padding-bottom: 18px; }
+body.guirab-next .fieldwork .vm-editor-heading h3 { color: var(--g-ink); font-family: var(--g-display), sans-serif; font-size: 20px; letter-spacing: -.05em; }
+body.guirab-next .fieldwork .vm-eyebrow { color: var(--g-teal); font-size: 10px; }
+body.guirab-next .fieldwork .vm-editor-card label { color: var(--g-ink); font-size: 12px; font-weight: 650; gap: 8px; }
+body.guirab-next .fieldwork :is(.vm-optional, .vm-character-count, .vm-icon-button) { color: var(--g-muted); }
+body.guirab-next .fieldwork :is(.vm-geometry-summary, .vm-editor-hint) { color: var(--g-teal); background: var(--g-bg); border-color: var(--g-line); font-size: 12px; }
+body.guirab-next .fieldwork .vm-geometry-summary button { color: var(--g-teal); font-size: 11px; min-height: 34px; }
+body.guirab-next .fieldwork .vm-records { background: var(--g-paper); padding: 24px; border-color: var(--g-line); border-radius: 22px; }
+body.guirab-next .fieldwork-records-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; }
+body.guirab-next .fieldwork .vm-records-heading { margin: 0; }
+body.guirab-next .fieldwork-section-label { display: block; color: var(--g-muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; margin-bottom: 5px; }
+body.guirab-next .fieldwork .vm-records-heading h3 { color: var(--g-ink); font-family: var(--g-display), sans-serif; font-size: 23px; font-weight: 600; letter-spacing: -.045em; }
+body.guirab-next .fieldwork .vm-records-heading h3 span { color: var(--g-muted); background: transparent; border: 0; padding: 0 0 0 6px; font: 500 18px var(--g-mono), monospace; }
+body.guirab-next .fieldwork-status-strip { display: flex; gap: 5px; flex-wrap: wrap; }
+body.guirab-next .fieldwork-status { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--g-line); border-radius: 100px; padding: 9px 12px; background: var(--g-paper); color: var(--g-muted); font-size: 11px; min-height: 38px; }
+body.guirab-next .fieldwork-status .vm-dot { color: var(--vm-status); width: 6px; height: 6px; }
+body.guirab-next .fieldwork-status b { color: var(--g-ink); font-family: var(--g-mono), monospace; font-weight: 600; }
+body.guirab-next .fieldwork-status:hover { border-color: var(--g-teal); }
+body.guirab-next .fieldwork-status.is-selected { background: var(--g-bg); color: var(--g-ink); border-color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-filters { background: transparent; padding: 18px 0; margin: 0 0 6px; border-radius: 0; border-width: 1px 0; border-color: var(--g-line); grid-template-columns: minmax(190px, 1.5fr) repeat(2, minmax(130px, 1fr)) minmax(145px, .8fr); gap: 14px; }
+body.guirab-next .fieldwork .vm-filters label > span { color: var(--g-muted); font-size: 11px; }
+body.guirab-next .fieldwork .vm-search input { padding-left: 37px; }
+body.guirab-next .fieldwork .vm-search > div > svg { color: var(--g-muted); top: 14px; }
+body.guirab-next .fieldwork .vm-clear-filters { color: var(--g-teal); min-height: 32px; }
+body.guirab-next .fieldwork .vm-record-grid { display: flex; flex-direction: column; gap: 0; }
+body.guirab-next .fieldwork .vm-record { display: grid; grid-template-columns: 125px minmax(0, 1fr) auto; align-items: start; gap: 22px; padding: 23px 0; border: 0; border-bottom: 1px solid var(--g-line); border-radius: 0; background: transparent; }
+body.guirab-next .fieldwork-record-date { display: grid; grid-template-columns: 18px 1fr; align-items: center; gap: 6px; padding-top: 4px; color: var(--vm-status); font-size: 11px; }
+body.guirab-next .fieldwork-record-date time { color: var(--g-muted); font-family: var(--g-mono), monospace; }
+body.guirab-next .fieldwork-record-date > span { grid-column: 2; color: var(--g-muted); font-size: 10px; }
+body.guirab-next .fieldwork-record-body { min-width: 0; }
+body.guirab-next .fieldwork-record-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+body.guirab-next .fieldwork .vm-record-name { color: var(--g-ink); font-size: 16px !important; line-height: 1.45; font-weight: 750 !important; margin: 0; }
+body.guirab-next .fieldwork .vm-record-name:hover:not(:disabled) { color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-badge { font-size: 10px; font-weight: 650; padding: 4px 8px; }
+body.guirab-next .fieldwork .vm-record-address { display: flex; align-items: start; gap: 6px; color: var(--g-muted); font-size: 12px; margin-top: 7px; }
+body.guirab-next .fieldwork .vm-record-address svg { flex-shrink: 0; margin-top: 2px; }
+body.guirab-next .fieldwork .vm-record-notes { color: var(--g-muted); background: transparent; font-size: 12px; line-height: 1.7; margin-top: 7px; padding: 0; max-width: 70ch; }
+body.guirab-next .fieldwork .vm-record-actions { display: flex; gap: 5px; flex-wrap: wrap; border: 0; padding: 0; margin: 0; max-width: 230px; justify-content: flex-end; }
+body.guirab-next .fieldwork .vm-record-actions button { border-color: var(--g-line); color: var(--g-muted); border-radius: 8px; min-height: 36px; padding: 8px 9px; font-size: 11px !important; background: var(--g-paper); }
+body.guirab-next .fieldwork .vm-record-actions .vm-record-locate { color: var(--g-teal); margin: 0; }
+body.guirab-next .fieldwork .vm-record-actions button:hover:not(:disabled) { background: var(--g-bg); border-color: var(--g-teal); }
+body.guirab-next .fieldwork :is(.vm-records-empty, .vm-pagination) { color: var(--g-muted); }
+body.guirab-next .fieldwork .vm-records-empty h4 { color: var(--g-ink); font-family: var(--g-display), sans-serif; font-size: 20px; }
+body.guirab-next .fieldwork .vm-records-empty p { color: var(--g-muted); font-size: 13px; }
+
+/* A plaque dossier: a permanent code, the business, then its working record. */
+body.guirab-next .crm-drawer-overlay.field-dossier { background: #0d272466; backdrop-filter: blur(6px); padding: 18px; align-items: stretch; }
+body.guirab-next .field-dossier .crm-drawer { width: 860px; height: 100%; max-height: calc(100dvh - 36px); border-radius: 24px; overflow: hidden; background: var(--g-paper); color: var(--g-ink); box-shadow: -20px 10px 90px #0d272424; border: 1px solid var(--g-line); }
+body.guirab-next .field-dossier .crm-drawer-header { padding: 22px 28px; color: var(--g-ink); background: var(--g-bg); border-color: var(--g-line); gap: 22px; }
+body.guirab-next .field-dossier .crm-dossier-code { min-width: 146px; padding-right: 24px; border-right: 1px solid var(--g-line); }
+body.guirab-next .field-dossier .crm-drawer-header .crm-kicker { color: var(--g-muted); font: 700 9px var(--g-body), sans-serif; letter-spacing: .12em; margin-bottom: 6px; }
+body.guirab-next .field-dossier .crm-drawer-header h2 { color: var(--g-teal); font: 650 36px/1 var(--g-mono), monospace; letter-spacing: .1em; }
+body.guirab-next .field-dossier .crm-dossier-caption { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+body.guirab-next .field-dossier .crm-dossier-caption > span { font-size: 11px; color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-dossier-caption > strong { font-size: 13px; color: var(--g-ink); font-weight: 650; }
+body.guirab-next .field-dossier .crm-drawer-header .icon-button { background: var(--g-paper); border: 1px solid var(--g-line); border-radius: 50%; color: var(--g-ink); width: 40px; height: 40px; flex-shrink: 0; }
+body.guirab-next .field-dossier .crm-drawer-scroll { padding: 28px; }
+body.guirab-next .field-dossier .crm-record-identity { align-items: start; gap: 17px; margin: 4px 0 20px; }
+body.guirab-next .field-dossier .crm-record-identity > div { flex: 1; min-width: 0; }
+body.guirab-next .field-dossier .crm-business-avatar, body.guirab-next .field-dossier .crm-business-avatar.available { width: 60px; height: 65px; border-radius: 14px; background: var(--g-mint); color: var(--g-teal); border: 0; }
+body.guirab-next .field-dossier .crm-dossier-eyebrow { font-size: 9px; font-weight: 750; letter-spacing: .1em; color: var(--g-muted); display: block; margin: 2px 0 5px; }
+body.guirab-next .field-dossier .crm-record-identity h3 { font-family: var(--g-display), sans-serif; color: var(--g-ink); font-size: clamp(23px, 3vw, 30px); font-weight: 600; letter-spacing: -.055em; line-height: 1.25; margin-bottom: 8px; }
+body.guirab-next .field-dossier .crm-dossier-address { color: var(--g-muted); font-size: 12px; line-height: 1.7; display: flex; align-items: start; gap: 6px; }
+body.guirab-next .field-dossier .crm-dossier-address svg { flex-shrink: 0; margin-top: 3px; }
+body.guirab-next .field-dossier .crm-record-identity > .status-badge { flex-shrink: 0; margin-top: 2px; }
+body.guirab-next .field-dossier .crm-dossier-ribbon { display: flex; flex-wrap: wrap; gap: 14px 28px; margin: 0 0 20px; padding: 14px 0; border-block: 1px solid var(--g-line); }
+body.guirab-next .field-dossier .crm-dossier-ribbon > span { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--g-muted); font-size: 11px; }
+body.guirab-next .field-dossier .crm-dossier-ribbon b { font-weight: 650; color: var(--g-ink); margin-left: 3px; }
+body.guirab-next .field-dossier .crm-record-actions { gap: 9px; margin-bottom: 28px; justify-content: flex-end; }
+body.guirab-next .field-dossier .crm-record-actions > .button { flex: initial; min-height: 42px; padding: 10px 15px; font-size: 12px; }
+body.guirab-next .field-dossier .crm-reviews-section { background: var(--g-bg); border: 0; border-radius: 18px; padding: 22px; margin: 0 0 28px; }
+body.guirab-next .field-dossier .crm-section-heading { color: var(--g-muted); margin-bottom: 20px; }
+body.guirab-next .field-dossier .crm-section-heading h3 { color: var(--g-ink); font-size: 14px; font-weight: 750; }
+body.guirab-next .field-dossier .crm-section-heading p { font-size: 11px; color: var(--g-muted); line-height: 1.6; margin-top: 4px; }
+body.guirab-next .field-dossier .crm-review-cards { gap: 0; grid-template-columns: 1fr 1fr 1.2fr; }
+body.guirab-next .field-dossier .crm-review-cards > div { border: 0; border-radius: 0; padding: 4px 18px 5px 0; background: transparent; min-width: 0; }
+body.guirab-next .field-dossier .crm-review-cards > div + div { border-left: 1px solid var(--g-line); padding-left: 20px; }
+body.guirab-next .field-dossier .crm-review-cards > div > span { color: var(--g-muted); font-size: 10px; margin-bottom: 12px; }
+body.guirab-next .field-dossier .crm-review-cards strong { color: var(--g-ink); font-family: var(--g-display), sans-serif; font-size: 38px; font-weight: 600; letter-spacing: -.055em; }
+body.guirab-next .field-dossier .crm-review-cards small { color: var(--g-muted); font-size: 10px; line-height: 1.5; margin-top: 8px; }
+body.guirab-next .field-dossier .crm-review-cards .crm-growth { background: transparent; border-color: var(--g-line); }
+body.guirab-next .field-dossier .crm-review-cards .crm-growth strong { color: var(--g-teal); }
+body.guirab-next .field-dossier .crm-review-cards .crm-growth.negative { background: transparent; border-color: var(--g-line); }
+body.guirab-next .field-dossier .crm-review-cards .crm-growth.negative strong { color: #c6785f; }
+body.guirab-next .field-dossier .crm-manual-note { color: var(--g-muted); font-size: 10px; line-height: 1.7; margin-top: 21px; }
+body.guirab-next .field-dossier .crm-manual-note > span { color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-dossier-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(180px, 1fr); gap: 30px; }
+body.guirab-next .field-dossier .crm-info-section { margin: 0; }
+body.guirab-next .field-dossier .crm-info-grid { gap: 22px 20px; }
+body.guirab-next .field-dossier .crm-info-grid dt { font-size: 10px; color: var(--g-muted); gap: 6px; margin-bottom: 7px; }
+body.guirab-next .field-dossier .crm-info-grid dt svg { color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-info-grid dd { color: var(--g-ink); font-size: 12px; line-height: 1.7; }
+body.guirab-next .field-dossier .crm-info-grid dd a { color: var(--g-teal); }
+body.guirab-next .field-dossier .crm-notes-section { margin: 0; padding: 0 0 0 26px; border-top: 0; border-left: 1px solid var(--g-line); }
+body.guirab-next .field-dossier .crm-notes-section > p, body.guirab-next .field-dossier .crm-notes-section > p.empty { color: var(--g-muted); background: transparent; border: 0; padding: 0; font-size: 12px; line-height: 1.9; }
+body.guirab-next .field-dossier .crm-permanent-link { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 10px; background: var(--g-bg); border: 1px solid var(--g-line); padding: 16px; border-radius: 12px; color: var(--g-teal); margin: 26px 0; }
+body.guirab-next .field-dossier .crm-permanent-link span { font-size: 10px; color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-permanent-link code { color: var(--g-ink); font-family: var(--g-mono), monospace; font-size: 12px; }
+body.guirab-next .field-dossier .crm-permanent-actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+body.guirab-next .field-dossier .crm-permanent-actions .button { min-height: 40px; font-size: 11px; padding: 9px 12px; }
+body.guirab-next .field-dossier .crm-permanent-link .crm-copy-feedback { grid-column: 2; color: var(--g-teal); font-size: 11px; line-height: 1.6; margin: 0; }
+body.guirab-next .field-dossier .crm-permanent-link .crm-copy-feedback.error { color: var(--g-danger); }
+body.guirab-next .field-dossier .crm-history-section { border-color: var(--g-line); padding-top: 23px; margin-top: 26px; }
+body.guirab-next .field-dossier .crm-history-state { color: var(--g-muted); border-color: var(--g-line); background: var(--g-bg); font-size: 12px; padding: 23px; border-radius: 12px; }
+body.guirab-next .field-dossier .crm-history-entry { border-color: var(--g-line); background: var(--g-paper); padding: 18px; border-radius: 13px; }
+body.guirab-next .field-dossier .crm-history-entry-heading strong { color: var(--g-ink); font-size: 14px; }
+body.guirab-next .field-dossier .crm-history-entry-heading > div > span { color: var(--g-muted); font-size: 10px; }
+body.guirab-next .field-dossier .crm-history-entry-heading > .button { font-size: 11px; min-height: 38px; padding: 9px 12px; }
+body.guirab-next .field-dossier .crm-history-counts { color: var(--g-muted); font-size: 11px; gap: 18px; }
+body.guirab-next .field-dossier .crm-history-counts b { color: var(--g-ink); }
+body.guirab-next .field-dossier .crm-history-entry details { border-color: var(--g-line); }
+body.guirab-next .field-dossier .crm-history-entry summary { color: var(--g-teal); font-size: 11px; min-height: 32px; }
+body.guirab-next .field-dossier .crm-history-detail dt { font-size: 10px; color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-history-detail dd { font-size: 12px; color: var(--g-ink); }
+body.guirab-next .field-dossier .crm-reset-section { background: transparent; border: 1px solid var(--g-line); border-radius: 13px; padding: 18px; margin-top: 26px; }
+body.guirab-next .field-dossier .crm-reset-section h3 { color: var(--g-ink); font-size: 13px; }
+body.guirab-next .field-dossier .crm-reset-section p { color: var(--g-muted); font-size: 11px; }
+body.guirab-next .field-dossier .crm-reset-section > .button { color: var(--g-danger); background: var(--g-paper); border-color: var(--g-line); min-height: 40px; font-size: 12px; }
+body.guirab-next .field-dossier .crm-drawer-footer { color: var(--g-muted); font-size: 10px; background: var(--g-bg); border-color: var(--g-line); padding: 14px 28px; }
+body.guirab-next .field-dossier .crm-confirm-dialog { color: var(--g-ink); background: var(--g-paper); border-color: var(--g-line); border-radius: 23px; padding: 28px; width: 490px; }
+body.guirab-next .field-dossier .crm-confirm-dialog h2 { color: var(--g-ink); font-family: var(--g-display), sans-serif; font-size: 24px; letter-spacing: -.05em; }
+body.guirab-next .field-dossier .crm-confirm-dialog > p { color: var(--g-muted); font-size: 13px; line-height: 1.8; }
+body.guirab-next .field-dossier .crm-reset-assurance { color: var(--g-muted); background: var(--g-bg); border-color: var(--g-line); font-size: 12px; }
+body.guirab-next .field-dossier .crm-confirm-actions { border-color: var(--g-line); }
+body.guirab-next .field-dossier .crm-danger-button { background: var(--g-danger); border-color: var(--g-danger); color: var(--g-paper); }
+body.guirab-next .field-dossier .crm-feedback { font-size: 12px; line-height: 1.7; }
+body.guirab-next :is(.fieldwork, .crm-drawer, .crm-confirm-dialog) :is(button, a, input, select, textarea, summary):focus-visible { outline: 3px solid var(--g-teal); outline-offset: 3px; }
+
+body.guirab-next .field-dossier .button { font-family: var(--g-body); font-weight: 700; line-height: 1.4; border-radius: 10px; min-height: 42px; gap: 8px; text-decoration: none; box-shadow: none; transition: background .15s, border-color .15s, color .15s; }
+body.guirab-next .field-dossier .button.primary { background: var(--g-teal); color: var(--g-paper); border: 1px solid var(--g-teal); box-shadow: none; }
+body.guirab-next .field-dossier .button.primary:hover:not(:disabled) { background: color-mix(in srgb, var(--g-teal) 85%, var(--g-ink)); border-color: var(--g-teal); color: var(--g-paper); box-shadow: none; }
+body.guirab-next .field-dossier .button.secondary { background: var(--g-paper); color: var(--g-ink); border: 1px solid var(--g-line); box-shadow: none; }
+body.guirab-next .field-dossier .button.secondary:hover:not(:disabled) { background: var(--g-bg); color: var(--g-teal); border-color: var(--g-teal); box-shadow: none; }
+body.guirab-next .field-dossier .button.crm-danger-button { background: var(--g-danger); color: var(--g-paper); border: 1px solid var(--g-danger); box-shadow: none; }
+body.guirab-next .field-dossier .button.crm-danger-button:hover:not(:disabled) { background: color-mix(in srgb, var(--g-danger) 85%, var(--g-ink)); border-color: var(--g-danger); color: var(--g-paper); box-shadow: none; }
+body.guirab-next .field-dossier .crm-reset-section > .button.secondary { color: var(--g-danger); }
+body.guirab-next .field-dossier .crm-reset-section > .button.secondary:hover:not(:disabled) { background: var(--g-danger-bg); color: var(--g-danger); border-color: var(--g-danger); }
+body.guirab-next .field-dossier .text-button { color: var(--g-teal); background: transparent; border: 0; border-radius: 6px; font-family: var(--g-body); font-size: 12px; font-weight: 700; min-height: 36px; padding: 6px 8px; }
+body.guirab-next .field-dossier .text-button:hover:not(:disabled) { color: var(--g-ink); background: var(--g-bg); }
+body.guirab-next .field-dossier .icon-button:hover:not(:disabled) { background: var(--g-mint); color: var(--g-teal); border-color: var(--g-teal); }
+body.guirab-next .field-dossier :is(button, .button):disabled { opacity: .45; cursor: not-allowed; filter: none; box-shadow: none; }
+body.guirab-next .field-dossier .crm-reset-icon { color: var(--g-danger); background: var(--g-danger-bg); border-color: color-mix(in srgb, var(--g-danger) 25%, var(--g-line)); }
+body.guirab-next .field-dossier .crm-feedback.success { color: var(--g-teal); background: color-mix(in srgb, var(--g-teal) 9%, var(--g-paper)); border: 1px solid color-mix(in srgb, var(--g-teal) 25%, var(--g-line)); }
+body.guirab-next .field-dossier :is(.crm-feedback.error, .crm-history-state.error) { color: var(--g-danger); background: var(--g-danger-bg); border: 1px solid color-mix(in srgb, var(--g-danger) 30%, var(--g-line)); }
+body.guirab-next .field-dossier .status-badge { background: var(--g-bg); color: var(--g-muted); border: 1px solid var(--g-line); font-size: 10px; }
+body.guirab-next .field-dossier .status-badge.active { background: var(--g-mint); color: var(--g-teal); border-color: transparent; }
+body.guirab-next .field-dossier .status-badge.available { background: var(--g-bg); color: var(--g-muted); }
+body.guirab-next .field-dossier .status-badge.paused { background: var(--g-bg); color: var(--g-muted); }
+body.guirab-next .field-dossier .crm-confirm-overlay { background: #0d272477; }
+
+body.guirab-next .fieldwork .vm-map-loading { background: var(--g-bg); color: var(--g-muted); }
+body.guirab-next .fieldwork :is(.vm-canvas .leaflet-popup-content-wrapper, .vm-canvas .leaflet-popup-tip, .vm-canvas .leaflet-control-zoom a, .vm-canvas .leaflet-control-attribution) { background: var(--g-paper); color: var(--g-ink); }
+body.guirab-next .fieldwork .vm-canvas .leaflet-control-zoom { border: 1px solid var(--g-line); box-shadow: 0 3px 12px #142c2915; }
+body.guirab-next .fieldwork .vm-canvas .leaflet-control-zoom a { border-color: var(--g-line); }
+body.guirab-next .fieldwork .vm-canvas .leaflet-control-zoom a:hover { background: var(--g-bg); color: var(--g-teal); }
+body.guirab-next .fieldwork :is(.vm-canvas a.leaflet-popup-close-button, .vm-canvas .leaflet-control-attribution a) { color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-popup { color: var(--g-ink); }
+body.guirab-next .fieldwork .vm-popup strong { color: var(--g-ink); font-family: var(--g-body); }
+body.guirab-next .fieldwork .vm-popup p { color: var(--g-muted); }
+body.guirab-next .fieldwork .vm-popup button { background: var(--g-teal); color: var(--g-paper); border-color: var(--g-teal); min-height: 38px; border-radius: 8px; padding: 9px 12px; font-family: var(--g-body); }
+body.guirab-next .fieldwork .vm-popup button:hover:not(:disabled) { background: color-mix(in srgb, var(--g-teal) 85%, var(--g-ink)); }
+body.guirab-next .fieldwork .vm-plate-marker { color: var(--g-teal); }
+body.guirab-next .fieldwork .vm-plate-marker.vm-plate-paused { color: var(--g-muted); }
+body.guirab-next .fieldwork .vm-plate-marker-code { color: var(--g-teal); background: var(--g-paper); border-color: var(--g-line); font-family: var(--g-mono); }
+body.guirab-next .fieldwork .vm-message-success { color: var(--g-teal); background: color-mix(in srgb, var(--g-teal) 9%, var(--g-paper)); border-color: color-mix(in srgb, var(--g-teal) 25%, var(--g-line)); }
+body.guirab-next .fieldwork .vm-message-error { color: var(--g-danger); background: var(--g-danger-bg); border-color: color-mix(in srgb, var(--g-danger) 30%, var(--g-line)); }
+body.guirab-next .fieldwork :is(.vm-editor-card, .vm-map-card, .vm-records, .vm-record, .fieldwork-record-body, .vm-filters > label) { min-width: 0; }
+
+@media (max-width: 1100px) {
+  body.guirab-next .fieldwork .vm-workspace.fieldwork-editing { grid-template-columns: minmax(0, 1fr); }
+  body.guirab-next .fieldwork .vm-editor-card form { display: grid; grid-template-columns: 1fr 1fr; }
+  body.guirab-next .fieldwork .vm-editor-card :is(.vm-editor-heading, label:has(textarea), .vm-geometry-summary, .vm-editor-hint, .vm-form-actions) { grid-column: 1 / -1; }
+  body.guirab-next .fieldwork .vm-filters { grid-template-columns: minmax(170px, 1.4fr) 1fr; }
+  body.guirab-next .fieldwork .vm-record { grid-template-columns: 112px minmax(0, 1fr); gap: 15px; }
+  body.guirab-next .fieldwork .vm-record-actions { grid-column: 2; max-width: none; justify-content: flex-start; }
+}
+@media (max-width: 650px) {
+  body.guirab-next .fieldwork { gap: 15px; }
+  body.guirab-next .fieldwork-heading { gap: 12px; }
+  body.guirab-next .fieldwork-heading h1 { font-size: 23px; }
+  body.guirab-next .fieldwork-live { font-size: 9px; }
+  body.guirab-next .fieldwork-heading > .vm-button { font-size: 0 !important; padding: 10px; width: 40px; min-width: 40px; gap: 0; }
+  body.guirab-next .fieldwork .vm-map-card { border-radius: 17px; }
+  body.guirab-next .fieldwork .vm-toolbar { gap: 8px; padding: 9px; }
+  body.guirab-next .fieldwork .vm-tools { width: 100%; gap: 0; padding: 3px; }
+  body.guirab-next .fieldwork .vm-tools .vm-tool { flex: 1; padding: 10px 5px; gap: 5px; font-size: 10px !important; min-width: 0; }
+  body.guirab-next .fieldwork .vm-map-navigation { width: 100%; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+  body.guirab-next .fieldwork .vm-map-navigation .vm-tool { justify-content: flex-start; padding: 8px 10px; min-height: 36px; font-size: 10px !important; }
+  body.guirab-next .fieldwork .vm-map-navigation .vm-tool span { font-size: inherit; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  body.guirab-next .fieldwork .vm-map-shell { height: 410px; }
+  body.guirab-next .fieldwork .vm-map-footer { padding: 12px 13px 9px; font-size: 10px; }
+  body.guirab-next .fieldwork :is(.vm-map-legend, .vm-plate-legend) { padding-left: 13px; padding-right: 13px; gap: 8px 12px; }
+  body.guirab-next .fieldwork .vm-records { padding: 19px 16px; border-radius: 17px; }
+  body.guirab-next .fieldwork-records-top { gap: 16px; margin-bottom: 16px; }
+  body.guirab-next .fieldwork .vm-records-heading h3 { font-size: 21px; }
+  body.guirab-next .fieldwork-status-strip { gap: 5px; }
+  body.guirab-next .fieldwork-status { padding: 8px 10px; font-size: 10px; gap: 6px; }
+  body.guirab-next .fieldwork .vm-filters { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 13px; }
+  body.guirab-next .fieldwork .vm-filters .vm-search { grid-column: 1 / -1; }
+  body.guirab-next .fieldwork .vm-filters label:last-of-type { grid-column: 1 / -1; }
+  body.guirab-next .fieldwork :is(.vm-filters input, .vm-filters select, .vm-editor-card input, .vm-editor-card select, .vm-editor-card textarea, .vm-region-search input, .vm-street-search) { font-size: 16px !important; }
+  body.guirab-next .fieldwork .vm-record { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 20px 0; }
+  body.guirab-next .fieldwork-record-date { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 0; }
+  body.guirab-next .fieldwork-record-date > span { margin-left: 4px; }
+  body.guirab-next .fieldwork .vm-record-actions { grid-column: 1; gap: 6px; margin-top: 3px; }
+  body.guirab-next .fieldwork .vm-record-actions button { min-height: 40px; }
+  body.guirab-next .fieldwork .vm-editor-card form { display: flex; gap: 17px; padding: 20px 17px; }
+  body.guirab-next .fieldwork :is(.vm-region-panel, .vm-region-context, .vm-drawing, .vm-street-selection) { padding: 15px; }
+  body.guirab-next .fieldwork .vm-drawing-actions .vm-button { font-size: 11px !important; }
+  body.guirab-next .fieldwork .vm-geometry-summary { flex-wrap: wrap; }
+  body.guirab-next .fieldwork .vm-geometry-summary button { margin-left: auto; padding: 4px 2px; }
+  body.guirab-next .fieldwork .vm-region-context > div { max-width: 100%; overflow-wrap: anywhere; }
+  body.guirab-next .fieldwork .vm-record-name { white-space: normal; overflow-wrap: anywhere; text-align: left; }
+  body.guirab-next .fieldwork .vm-record-notes { overflow-wrap: anywhere; }
+  body.guirab-next .crm-drawer-overlay.field-dossier { padding: 0; }
+  body.guirab-next .field-dossier .crm-drawer { max-height: 100dvh; border-radius: 0; border: 0; }
+  body.guirab-next .field-dossier .crm-drawer-header { padding: 20px; gap: 15px; }
+  body.guirab-next .field-dossier .crm-dossier-code { min-width: 118px; padding-right: 15px; }
+  body.guirab-next .field-dossier .crm-drawer-header h2 { font-size: 29px; }
+  body.guirab-next .field-dossier .crm-dossier-caption { gap: 4px; }
+  body.guirab-next .field-dossier .crm-dossier-caption > span { font-size: 10px; }
+  body.guirab-next .field-dossier .crm-dossier-caption > strong { font-size: 11px; }
+  body.guirab-next .field-dossier .crm-drawer-scroll { padding: 24px 20px; }
+  body.guirab-next .field-dossier .crm-record-identity { flex-wrap: wrap; gap: 13px; }
+  body.guirab-next .field-dossier .crm-business-avatar, body.guirab-next .field-dossier .crm-business-avatar.available { width: 48px; height: 55px; border-radius: 12px; }
+  body.guirab-next .field-dossier .crm-record-identity h3 { font-size: 24px; }
+  body.guirab-next .field-dossier .crm-record-identity > .status-badge { margin-left: 61px; margin-top: -2px; }
+  body.guirab-next .field-dossier .crm-dossier-ribbon { gap: 12px; flex-direction: column; }
+  body.guirab-next .field-dossier .crm-record-actions > .button { flex: 1; padding: 10px; }
+  body.guirab-next .field-dossier .crm-reviews-section { padding: 18px 15px; }
+  body.guirab-next .field-dossier .crm-review-cards { grid-template-columns: 1fr 1fr; gap: 15px 0; }
+  body.guirab-next .field-dossier .crm-review-cards > div { padding: 0 14px 0 0; }
+  body.guirab-next .field-dossier .crm-review-cards > div + div { padding-left: 15px; }
+  body.guirab-next .field-dossier .crm-review-cards .crm-growth { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--g-line); padding: 15px 0 0; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+  body.guirab-next .field-dossier .crm-review-cards .crm-growth > span { margin: 0; font-size: 11px; }
+  body.guirab-next .field-dossier .crm-review-cards .crm-growth > strong { grid-column: 2; grid-row: span 2; justify-content: flex-end; }
+  body.guirab-next .field-dossier .crm-review-cards .crm-growth > small { margin-top: 4px; }
+  body.guirab-next .field-dossier .crm-review-cards strong { font-size: 33px; }
+  body.guirab-next .field-dossier .crm-dossier-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  body.guirab-next .field-dossier .crm-notes-section { border-left: 0; border-top: 1px solid var(--g-line); padding: 22px 0 0; }
+  body.guirab-next .field-dossier .crm-info-grid dt { font-size: 10px; }
+  body.guirab-next .field-dossier .crm-info-grid dd { font-size: 12px; }
+  body.guirab-next .field-dossier .crm-permanent-link code { font-size: 11px; }
+  body.guirab-next .field-dossier .crm-reset-section { flex-wrap: wrap; gap: 13px; }
+  body.guirab-next .field-dossier .crm-reset-section > .button { margin-left: auto; }
+  body.guirab-next .field-dossier .crm-history-entry-heading { flex-wrap: wrap; gap: 12px; }
+  body.guirab-next .field-dossier .crm-drawer-footer { padding: 14px 20px; }
+}
+
+@media(max-width:650px){body.guirab-next .field-dossier .crm-record-identity{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px 13px}body.guirab-next .field-dossier .crm-record-identity>.status-badge{grid-column:2;justify-self:start;margin:0}body.guirab-next .field-dossier .crm-dossier-address{font-size:12px;line-height:1.8}}
+
+@media(max-width:650px){body.guirab-next .fieldwork-heading>.vm-button>span{display:none}body.guirab-next .fieldwork-heading>div{min-width:0}body.guirab-next .fieldwork-heading h1{font-size:22px;line-height:1.2}}

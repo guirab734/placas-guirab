@@ -1,0 +1,49 @@
+.registration-location-map {
+  margin: 0 0 22px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--foreground);
+  background: var(--card);
+}
+.registration-location-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 15px; }
+.registration-location-heading > div { min-width: 0; }
+.registration-location-heading h3 { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 650; line-height: 1.6; color: var(--foreground); margin: 0; }
+.registration-location-heading h3 > svg { color: var(--primary); }
+.registration-location-heading p { color: var(--muted-foreground); font-size: 10px; line-height: 1.6; margin: 4px 0 0; }
+.registration-location-recenter { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--input); border-radius: 6px; background: var(--secondary); color: var(--secondary-foreground); padding: 8px 9px; min-height: 32px; font-size: 9px; font-weight: 600; line-height: 1.5; flex-shrink: 0; }
+.registration-location-recenter:hover:not(:disabled) { background: var(--accent); color: var(--accent-foreground); border-color: var(--ring); }
+.registration-location-map button:focus-visible, .registration-location-map a:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+.registration-location-viewport { height: 230px; position: relative; isolation: isolate; z-index: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.registration-location-canvas { width: 100%; height: 100%; background: var(--muted); font-family: Arial, Helvetica, sans-serif; }
+.registration-location-pin { background: transparent; border: 0; }
+.registration-location-pin > svg { display: block; filter: drop-shadow(0 3px 3px #102d624d); }
+.registration-location-pin:focus-visible { outline: 3px solid #0b335f; outline-offset: 3px; border-radius: 14px; }
+.registration-location-canvas .leaflet-control-zoom { border-color: var(--input); }
+.registration-location-canvas .leaflet-control-zoom a { background: var(--card); color: var(--foreground); border-color: var(--border); }
+.registration-location-canvas .leaflet-control-zoom a:hover { background: var(--accent); color: var(--accent-foreground); }
+.registration-location-canvas .leaflet-control-zoom a.leaflet-disabled { background: var(--muted); color: var(--muted-foreground); }
+.registration-location-canvas .leaflet-control-attribution { background: var(--card); color: var(--secondary-foreground); max-width: calc(100% - 8px); white-space: normal; font-size: 9px; line-height: 1.7; padding: 2px 5px; }
+.registration-location-canvas .leaflet-control-attribution a { color: var(--primary); }
+.registration-location-canvas .leaflet-tooltip { background: var(--popover); color: var(--popover-foreground); border-color: var(--border); font-size: 10px; font-family: Arial, Helvetica, sans-serif; }
+.registration-location-canvas .leaflet-tooltip-top::before { border-top-color: var(--popover); }
+.registration-location-state { position: absolute; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 11px; padding: 23px; background: var(--muted); color: var(--secondary-foreground); text-align: center; }
+.registration-location-state p { font-size: 11px; line-height: 1.8; max-width: 300px; margin: 0; }
+.registration-location-state button, .registration-location-tile-error button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; padding: 6px 9px; background: var(--card); color: var(--foreground); border: 1px solid var(--input); border-radius: 6px; font-size: 10px; }
+.registration-location-state button:hover, .registration-location-tile-error button:hover { background: var(--accent); color: var(--accent-foreground); }
+.registration-location-tile-error { padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--secondary); border-bottom: 1px solid var(--border); color: var(--secondary-foreground); }
+.registration-location-tile-error p { margin: 0; font-size: 10px; line-height: 1.8; flex: 1; min-width: 150px; }
+.registration-location-caption { display: flex; flex-direction: column; gap: 8px; padding: 14px 15px 16px; }
+.registration-location-legend { display: inline-flex; align-items: center; gap: 6px; color: var(--secondary-foreground); font-size: 10px; line-height: 1.6; font-weight: 600; }
+.registration-location-legend > i { display: inline-block; flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: #1a73e8; box-shadow: 0 0 0 3px #1a73e81c; }
+.registration-location-caption > p { margin: 0; color: var(--foreground); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.registration-location-caption > code { font-family: ui-monospace, monospace; color: var(--secondary-foreground); font-size: 10px; line-height: 1.7; overflow-wrap: anywhere; }
+.registration-location-caption > small { color: var(--muted-foreground); font-size: 9px; line-height: 1.8; }
+.registration-location-caption > a { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; color: var(--primary); font-size: 10px; line-height: 1.7; font-weight: 600; }
+.registration-location-caption > a:hover { text-decoration: underline; }
+@media (max-width: 480px) {
+  .registration-location-heading { flex-wrap: wrap; gap: 10px; padding: 13px; }
+  .registration-location-recenter { margin-left: auto; font-size: 10px; }
+  .registration-location-caption { padding: 13px; }
+  .registration-location-canvas .leaflet-control-attribution { font-size: 8px; }
+}

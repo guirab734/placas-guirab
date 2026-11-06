@@ -1,0 +1,14 @@
+.plate-location-line{margin:7px 0 0 46px;max-width:350px;min-width:0;color:var(--muted-foreground);font-size:10px;line-height:1.6}
+.plate-location-line button,.plate-location-line>span{display:flex;align-items:flex-start;gap:5px;max-width:100%;min-width:0;text-align:left;color:inherit;font:inherit;background:none;border:0;padding:0}
+.plate-location-line button{cursor:pointer;color:var(--primary)}
+.plate-location-line button:hover{text-decoration:underline}
+.plate-location-line button:focus-visible{outline:2px solid var(--ring);outline-offset:4px;border-radius:3px}
+.plate-location-line svg{flex:none;margin-top:2px}
+.plate-location-line span span,.plate-location-line button span{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow-wrap:anywhere}
+.registration-map-wrap{margin:16px 0 22px}
+html[data-theme="dark"] .plate-location-line{color:var(--dark-muted)}
+html[data-theme="dark"] .plate-location-line button{color:var(--dark-link)}
+html[data-theme="dark"] .vm-map-navigation .vm-see-plates{background:var(--accent);color:var(--dark-link);border-color:#334f74}
+html[data-theme="dark"] .vm-plate-legend{color:var(--dark-link)}
+html[data-theme="dark"] .vm-plate-legend .vm-plate-legend-paused,html[data-theme="dark"] .vm-plate-legend .vm-plate-legend-missing{color:var(--dark-muted)}
+@media(max-width:640px){.plate-location-line{margin-left:0;max-width:240px;margin-top:9px;font-size:10px}}
