@@ -52,9 +52,9 @@ next-env.d.ts
 /.wrangler/
 # Checkout-local execution profile and tool state; never publish them.
 /.sites-runtime/
-/.agents/
-/.codex/
 /outputs/
 /output/
 /tmp/
 /work/
+
+# Configuração local de desenvolvimento
